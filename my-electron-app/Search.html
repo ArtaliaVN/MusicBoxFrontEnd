@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <title>Music box</title>
+    <link rel="stylesheet" href = "style.css">
+  </head>
+  <body>
+    <section class = "MainFrame">
+        <nav class = "LeftTool">
+            <div class = "Title" id = "Musicbox">Music box</div>
+            <a href = "Search.html"><div class = "NavigationBtn" id = "Search">Search</div></a>
+            <a href = "Library.html"><div class = "NavigationBtn" id = "Library">Library</div></a>
+            <a href = "Setting.html"><div class = "NavigationBtn" id = "Setting">Setting</div></a>
+        </nav>
+
+        <nav class = "MainPanel">
+            <div class = "SearchField">
+                <form>
+                    <input class = "SearchPar" type = "text" name = "searchPar"/>
+                    <input class = "SearchBtn" type = "button" name = "searchBtn"/>
+                </form>
+            </div>
+
+            <div class = "SearchResult"></div>
+
+            <div class = "PageNav">1</div>
+        </nav>
+    </section>
+  </body>
+  <script src="./renderer.js"></script>
+</html>
