@@ -10,6 +10,7 @@ class HomeWidget extends StatelessWidget{
         decoration: BoxDecoration(
           color: Colors.white,
         ),
+        child: Container(),
       ),
     );
   }

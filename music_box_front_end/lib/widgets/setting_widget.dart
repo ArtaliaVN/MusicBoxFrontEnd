@@ -9,6 +9,7 @@ class SettingWidget extends StatelessWidget{
       decoration: BoxDecoration(
         color: Colors.red,
       ),
+      child: Container(),
     );
   }
 }

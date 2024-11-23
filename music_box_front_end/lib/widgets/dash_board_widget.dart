@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:music_box_front_end/data/navigating_signal.dart';
 import 'package:music_box_front_end/data/side_menu_data.dart';
 import 'package:music_box_front_end/widgets/header_widget.dart';
-import 'package:music_box_front_end/widgets/search_result_widget.dart';
 
 class DashBoardWidget extends StatelessWidget{
   final NavigatingSignal navigatingSignal;

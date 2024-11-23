@@ -9,6 +9,7 @@ class LibraryWidget extends StatelessWidget{
       decoration: BoxDecoration(
         color: Colors.black,
       ),
+      child: Container(),
     );
   }
 }

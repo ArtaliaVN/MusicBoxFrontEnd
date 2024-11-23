@@ -6,7 +6,7 @@ class HeaderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
+      padding: EdgeInsets.fromLTRB(30, 10, 30, 30),
       child: TextField(
         decoration: InputDecoration(
           constraints: BoxConstraints(maxHeight: 35, maxWidth: 500),

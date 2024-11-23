@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../data/search_result_data.dart';
+import '../data/song_data.dart';
 
 class SearchResultWidget extends StatefulWidget {
   const SearchResultWidget({super.key});
@@ -13,7 +13,7 @@ class SearchResultState extends State<SearchResultWidget>{
 
   @override
   Widget build(BuildContext context) {
-    final result = SearchResultData();
+    final result = SongData();
 
     return DecoratedBox(
       decoration: BoxDecoration(
@@ -22,7 +22,7 @@ class SearchResultState extends State<SearchResultWidget>{
       ),
       child: GridView.builder(
       padding: EdgeInsets.all(10),
-      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(maxCrossAxisExtent: 300, crossAxisSpacing: 10, mainAxisSpacing: 10, childAspectRatio: 0.85),
+      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(maxCrossAxisExtent: 260, crossAxisSpacing: 10, mainAxisSpacing: 10, childAspectRatio: 0.85),
       scrollDirection: Axis.vertical,
       itemCount: result.result.length,
       itemBuilder: (context, index) => buildSearchItem(result, index)
@@ -30,7 +30,7 @@ class SearchResultState extends State<SearchResultWidget>{
     );
   }
 
-  Widget buildSearchItem(SearchResultData result, int index){
+  Widget buildSearchItem(SongData result, int index){
     IconData icon = Icons.play_arrow;
     final isSelected = selectedIndex == index;
 

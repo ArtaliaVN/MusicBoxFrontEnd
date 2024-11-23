@@ -11,7 +11,6 @@ class SideMenuWidget extends StatefulWidget {
 }
 
 class _SideMenyWidgetState extends State<SideMenuWidget> {
-  int selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +25,7 @@ class _SideMenyWidgetState extends State<SideMenuWidget> {
   }
 
   Widget buildMenuEntry(SideMenuData data, int index){
+    int selectedIndex = widget.navigatingSignal.signal;
     final isSelected = selectedIndex == index;
     return InkWell(
         onTap: () => setState(() {
