@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../data/search_result_data.dart';
 
 class SearchResultWidget extends StatefulWidget {
@@ -18,7 +17,8 @@ class SearchResultState extends State<SearchResultWidget>{
 
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: null,
+        //color: const Color.fromARGB(255, 255, 255, 255),
+        borderRadius: BorderRadius.circular(10),
       ),
       child: GridView.builder(
       padding: EdgeInsets.all(10),
@@ -39,7 +39,6 @@ class SearchResultState extends State<SearchResultWidget>{
               selectedIndex = index;
               }
             ),
-      
       borderRadius: BorderRadius.circular(15),
       child: DecoratedBox(
           decoration: BoxDecoration(
@@ -54,42 +53,40 @@ class SearchResultState extends State<SearchResultWidget>{
 
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
             children: [
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          result.result[index].title,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                          ),
-                        ),
-                        Text(
-                          result.result[index].artist,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                          ),
-                        )
-                      ],
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      result.result[index].title,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                      ),
                     ),
-                  ),
-                ],
+                    Text(
+                      "Artist: ${result.result[index].artist} ",
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                      ),
+                    )
+                  ],
+                ),
               ),
 
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children:[ 
-                InkWell(
+              Container(
+                alignment: AlignmentDirectional.bottomEnd,
+                child: InkWell(
                   borderRadius: BorderRadius.circular(50),
                   onTap: () => setState((){
-                  
+                    selectedIndex = index;
                     }
                   ), 
                   child: 
@@ -99,12 +96,11 @@ class SearchResultState extends State<SearchResultWidget>{
                       color: Colors.greenAccent
                     ),
                 ),
-                ],
               )
             ],
           )
         ),
     );
-    }
+  }
 
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:music_box_front_end/data/navigating_signal.dart';
 import 'package:music_box_front_end/widgets/dash_board_widget.dart';
 import 'package:music_box_front_end/widgets/side_menu_widget.dart';
 
@@ -10,9 +11,10 @@ class MyHomePage extends StatefulWidget {
 }
 
 class HomeScreenState extends State<MyHomePage> {
+
   @override
   Widget build(BuildContext context){
-
+    final NavigatingSignal navigatingSignal = NavigatingSignal();
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
@@ -33,7 +35,7 @@ class HomeScreenState extends State<MyHomePage> {
                 margin: EdgeInsets.fromLTRB(5, 5, 5, 5),
                 child: SizedBox(
                   width: 120,
-                  child: SideMenuWidget()
+                  child: SideMenuWidget(navigatingSignal: navigatingSignal)
                   ),
               )
             ),
@@ -41,9 +43,7 @@ class HomeScreenState extends State<MyHomePage> {
             //Dash board
             Expanded(
               flex:1,
-              child: Container(
-                child: DashBoardWidget(),
-              )
+              child: DashBoardWidget(navigatingSignal: navigatingSignal),
             )
 
           ],  

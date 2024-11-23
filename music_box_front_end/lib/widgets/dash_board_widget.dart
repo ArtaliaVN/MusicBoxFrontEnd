@@ -1,13 +1,16 @@
 import 'package:flutter/cupertino.dart';
+import 'package:music_box_front_end/data/navigating_signal.dart';
+import 'package:music_box_front_end/data/side_menu_data.dart';
 import 'package:music_box_front_end/widgets/header_widget.dart';
 import 'package:music_box_front_end/widgets/search_result_widget.dart';
 
 class DashBoardWidget extends StatelessWidget{
-  const DashBoardWidget({super.key});
-
+  final NavigatingSignal navigatingSignal;
+  const DashBoardWidget({super.key, required this.navigatingSignal});
 
   @override
   Widget build(BuildContext context) {
+    final SideMenuData data = SideMenuData();
     return Column(
       children: [
         Expanded(
@@ -19,13 +22,12 @@ class DashBoardWidget extends StatelessWidget{
 
         Expanded(
           flex: 1,
-          child: SizedBox(
-            child: SearchResultWidget(),
+          child: ListenableBuilder(
+            listenable: navigatingSignal,
+            builder: (BuildContext context, Widget? child) {return data.menu[navigatingSignal.signal].widget;},
             ),
         ),
-          
         ],
     );
   }
-
 }
