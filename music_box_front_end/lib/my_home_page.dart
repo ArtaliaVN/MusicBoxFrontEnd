@@ -11,10 +11,10 @@ class MyHomePage extends StatefulWidget {
 }
 
 class HomeScreenState extends State<MyHomePage> {
+  static final NavigatingSignal navigatingSignal = NavigatingSignal();
 
   @override
   Widget build(BuildContext context){
-    final NavigatingSignal navigatingSignal = NavigatingSignal();
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(

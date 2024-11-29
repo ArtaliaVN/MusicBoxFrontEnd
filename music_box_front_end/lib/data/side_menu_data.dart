@@ -7,10 +7,11 @@ import 'package:music_box_front_end/widgets/setting_widget.dart';
 import '../models/menu_model.dart';
 
 class SideMenuData {
-  final menu = const<MenuModel>[
-    MenuModel(icon: Icons.home, title: "Home", widget: HomeWidget()),
-    MenuModel(icon: Icons.search, title: "Search", widget: SearchResultWidget()),
-    MenuModel(icon: Icons.my_library_music, title: "Library",widget: LibraryWidget()),
-    MenuModel(icon: Icons.settings, title: "Setting", widget: SettingWidget()),
+
+  final menu = <MenuModel>[
+    const MenuModel(icon: Icons.home, title: "Home", widget: HomeWidget(),),
+    const MenuModel(icon: Icons.search, title: "Search", widget: SearchResultWidget()),
+    const MenuModel(icon: Icons.my_library_music, title: "Library",widget: LibraryWidget()),
+    const MenuModel(icon: Icons.settings, title: "Setting", widget: SettingWidget()),
   ];
 }

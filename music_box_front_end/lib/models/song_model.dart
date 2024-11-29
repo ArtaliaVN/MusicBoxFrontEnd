@@ -1,18 +1,14 @@
 
-import 'package:flutter/widgets.dart';
-
 class SongModel {
   
-  final int ?songID;
+  final int songID;
   final String title;
   final String artist;
   final String information;
   final int view;
-  final String lyrics;
-  final int ?subscriberCount;
-  final int ?upvoteCount;
-  final int ?songURL;
-  final Image ?songPoster;
+  final int upvoteCount;
+  final String songURL;
+  final String songPoster;
 
   const SongModel(
     {
@@ -21,8 +17,6 @@ class SongModel {
       required this.artist,
       required this.information,
       required this.view,
-      required this.lyrics,
-      required this.subscriberCount,
       required this.upvoteCount,
       required this.songURL,
       required this.songPoster,

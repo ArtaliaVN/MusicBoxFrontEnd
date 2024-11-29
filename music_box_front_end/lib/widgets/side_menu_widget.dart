@@ -25,12 +25,12 @@ class _SideMenyWidgetState extends State<SideMenuWidget> {
   }
 
   Widget buildMenuEntry(SideMenuData data, int index){
-    int selectedIndex = widget.navigatingSignal.signal;
+    int selectedIndex = widget.navigatingSignal.getNavSignal;
     final isSelected = selectedIndex == index;
     return InkWell(
         onTap: () => setState(() {
           selectedIndex = index;
-          widget.navigatingSignal.setSignal(selectedIndex);
+          widget.navigatingSignal.setNavSignal(selectedIndex);
         }),
         borderRadius: BorderRadius.circular(15),
         hoverColor:isSelected?null: Colors.white,
