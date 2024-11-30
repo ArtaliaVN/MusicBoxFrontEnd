@@ -15,13 +15,11 @@ class _SideMenyWidgetState extends State<SideMenuWidget> {
   @override
   Widget build(BuildContext context) {
     final data= SideMenuData();
-    return Container(
-      child: ListView.builder(
+    return ListView.builder(
         shrinkWrap: true,
         itemCount: data.menu.length,
         itemBuilder: (context, index) => buildMenuEntry(data, index),
-      )
-    );
+      );
   }
 
   Widget buildMenuEntry(SideMenuData data, int index){
@@ -30,7 +28,8 @@ class _SideMenyWidgetState extends State<SideMenuWidget> {
     return InkWell(
         onTap: () => setState(() {
           selectedIndex = index;
-          widget.navigatingSignal.setNavSignal(selectedIndex);
+          widget.navigatingSignal.toggleSignal(false);
+          widget.navigatingSignal.setNavSignal(index);
         }),
         borderRadius: BorderRadius.circular(15),
         hoverColor:isSelected?null: Colors.white,

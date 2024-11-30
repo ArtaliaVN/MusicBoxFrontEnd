@@ -1,3 +1,4 @@
+import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter/material.dart';
 
 class HomeWidget extends StatelessWidget{
@@ -6,12 +7,19 @@ class HomeWidget extends StatelessWidget{
   @override
   Widget build(Object context) {
     return Container(
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: Colors.white,
+      decoration: BoxDecoration(
+        border: Border.all(
+          width: 2,
+          color: Colors.black38,
         ),
-        child: Container(),
+        borderRadius: const BorderRadius.all(Radius.circular(20)),
       ),
+      child: BlurryContainer(
+        child: Container(
+          alignment: Alignment.topLeft,
+          child: Text("Home page", style: TextStyle(color:Colors.white),),
+          )
+        )
     );
   }
 }

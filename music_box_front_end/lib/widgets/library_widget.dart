@@ -1,3 +1,4 @@
+import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter/material.dart';
 
 class LibraryWidget extends StatefulWidget{
@@ -10,13 +11,20 @@ class LibraryWidgetState extends State<LibraryWidget>{
   
   @override
   Widget build(BuildContext context) {
-    return DecoratedBox(
+    return Container(
       decoration: BoxDecoration(
-        color: Colors.black,
+        border: Border.all(
+          width: 2,
+          color: Colors.black38,
+        ),
+        borderRadius: const BorderRadius.all(Radius.circular(20)),
       ),
-      child: Container(
-        
-      ),
+      child: BlurryContainer(
+        child: Container(
+          alignment: Alignment.topLeft,
+          child: Text("Library page", style: TextStyle(color:Colors.white),),
+          )
+        )
     );
   }
 }
