@@ -54,18 +54,16 @@ class SongDetailedPageState extends State<SongDetailedPageWidget>{
                   SizedBox(
                     child: Row(
                       children: [
-                        Center(
-                          child: Container(
-                            constraints: BoxConstraints(
-                              minHeight: 200,
-                              minWidth: 200,
-                              maxHeight: 400,
-                              maxWidth: 400,
-                            ),
-                            margin: EdgeInsets.all(20),  
-                            decoration: BoxDecoration(
-                              color: const Color.fromARGB(103, 244, 67, 54),
-                            ),
+                        Container(
+                          constraints: BoxConstraints(
+                            minHeight: 200,
+                            minWidth: 200,
+                            maxHeight: 400,
+                            maxWidth: 400,
+                          ),
+                          margin: EdgeInsets.all(20),  
+                          decoration: BoxDecoration(
+                            color: const Color.fromARGB(103, 244, 67, 54),
                           ),
                         ),
     

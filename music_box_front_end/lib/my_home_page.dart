@@ -42,8 +42,18 @@ class HomeScreenState extends State<MyHomePage> {
 
             //Dash board
             Expanded(
-              flex:1,
-              child: DashBoardWidget(navigatingSignal: navigatingSignal),
+              flex: 1,
+              child: Column(
+                children: [
+                  Expanded(
+                    flex:1,
+                    child: DashBoardWidget(navigatingSignal: navigatingSignal),
+                  ),
+                  SizedBox(
+                    
+                  ),
+                ],
+              ),
             )
 
           ],  

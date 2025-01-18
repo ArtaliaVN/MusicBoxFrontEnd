@@ -1,5 +1,7 @@
 import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter/material.dart';
+import 'package:music_box_front_end/widgets/artist_horizontal_scrollpar.dart';
+import 'package:music_box_front_end/widgets/song_horizontal_scroll_par.dart';
 
 class HomeWidget extends StatelessWidget{
   const HomeWidget({super.key});
@@ -16,9 +18,67 @@ class HomeWidget extends StatelessWidget{
       ),
       child: BlurryContainer(
         child: Container(
-          alignment: Alignment.topLeft,
-          child: Text("Home page", style: TextStyle(color:Colors.white),),
-          )
+          decoration: BoxDecoration(
+            color: Colors.black38,
+            borderRadius: BorderRadiusDirectional.circular(8),
+          ),
+          child: ListView(
+            scrollDirection: Axis.vertical,
+            padding: const EdgeInsetsDirectional.all(2),
+            children: <Widget>[
+              Container(
+                //margin: EdgeInsets.all(10),
+                padding: EdgeInsets.fromLTRB(10,0,10,0),
+                constraints: BoxConstraints(
+                  maxWidth: double.infinity,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Popular artists",
+                      style: TextStyle(
+                        color: Colors.white
+                      ),
+                      ),
+                    Text(
+                      "See more",
+                      style: TextStyle(
+                        color: Colors.white
+                      ),
+                      ),
+                  ],
+                ),
+              ),
+              ArtistHorizontalScrollpar(),
+              Container(
+                //margin: EdgeInsets.all(10),
+                padding: EdgeInsets.fromLTRB(10,0,10,0),
+                constraints: BoxConstraints(
+                  maxWidth: double.infinity,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Popular tracks",
+                      style: TextStyle(
+                        color: Colors.white
+                      ),
+                      ),
+                    Text(
+                      "See more",
+                      style: TextStyle(
+                        color: Colors.white
+                      ),
+                      ),
+                  ],
+                ),
+              ),
+              SongHorizontalScrollPar(),
+            ],
+          ),
+        )
         )
     );
   }
