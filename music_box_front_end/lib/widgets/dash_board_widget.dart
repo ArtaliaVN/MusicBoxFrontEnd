@@ -26,7 +26,7 @@ class DashBoardWidget extends StatelessWidget{
             listenable: navigatingSignal,
             builder: (BuildContext context, Widget? child) {
               return navigatingSignal.viewSignal?
-              SongDetailedPageWidget(song: navigatingSignal.getSong,)
+              SongDetailedPageWidget()
               :
               data.menu[navigatingSignal.getNavSignal].widget;},
             ),
