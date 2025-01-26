@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:music_box_front_end/my_home_page.dart';
 
-void main() {
+main()  {
   runApp(const MyApp());
 }
 

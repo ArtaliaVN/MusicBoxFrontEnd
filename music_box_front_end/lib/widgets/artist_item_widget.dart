@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:music_box_front_end/data/artist_data.dart';
 import 'package:music_box_front_end/data/navigating_signal.dart';
+import 'package:music_box_front_end/models/artist_dto.dart';
 import 'package:music_box_front_end/my_home_page.dart';
 
 class ArtistItemWidget extends StatefulWidget{
   final NavigatingSignal signal = HomeScreenState.navigatingSignal;
   final int index;
-  final ArtistData artist;
+  final ArtistDto artist;
   ArtistItemWidget({super.key, required this.index, required this.artist});
 
   @override
@@ -41,7 +41,7 @@ class ArtistItemWidgetState extends State<ArtistItemWidget>{
             child: ListView(
               children: [
                 Text(
-                  widget.artist.result[widget.index].artistInformation,
+                  widget.artist.artistInformation,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
@@ -50,7 +50,7 @@ class ArtistItemWidgetState extends State<ArtistItemWidget>{
                   ),
                 ),
                 Text(
-                  "Artist: ${widget.artist.result[widget.index].artistName} ",
+                  "Artist: ${widget.artist.artistName}",
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(

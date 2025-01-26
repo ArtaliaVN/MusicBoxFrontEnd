@@ -1,7 +1,6 @@
 import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter/material.dart';
 import 'package:music_box_front_end/data/navigating_signal.dart';
-import 'package:music_box_front_end/models/song_model.dart';
 import 'package:music_box_front_end/my_home_page.dart';
 
 class SongDetailedPageWidget extends StatefulWidget{
@@ -16,7 +15,6 @@ class SongDetailedPageState extends State<SongDetailedPageWidget>{
   @override
   Widget build(BuildContext context){
     final NavigatingSignal signal = HomeScreenState.navigatingSignal;
-    final SongModel song = signal.getSong;
     return Container(
       decoration: BoxDecoration(
         border: Border.all(
@@ -73,7 +71,7 @@ class SongDetailedPageState extends State<SongDetailedPageWidget>{
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              song.title,
+                              "null",
                               maxLines: 3,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
@@ -83,7 +81,7 @@ class SongDetailedPageState extends State<SongDetailedPageWidget>{
                             ),
     
                             Text(
-                              "Artist: ${song.artist}",
+                              "Artist: null",
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
@@ -103,7 +101,7 @@ class SongDetailedPageState extends State<SongDetailedPageWidget>{
                         padding: EdgeInsets.all(20),
                         alignment: Alignment.topLeft,
                         child: Text(
-                          "Description:\n${song.information}",
+                          "Description: null",
                           style: TextStyle(
                             color: Colors.white,
                           ),

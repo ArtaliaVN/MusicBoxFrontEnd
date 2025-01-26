@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:music_box_front_end/data/navigating_signal.dart';
-import 'package:music_box_front_end/data/side_menu_data.dart';
+import 'package:music_box_front_end/data/panel_data.dart';
 
 class SideMenuWidget extends StatefulWidget {
   final NavigatingSignal navigatingSignal;
@@ -14,15 +14,15 @@ class _SideMenyWidgetState extends State<SideMenuWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final data= SideMenuData();
+    final data= PanelData();
     return ListView.builder(
         shrinkWrap: true,
-        itemCount: data.menu.length,
+        itemCount: 4,
         itemBuilder: (context, index) => buildMenuEntry(data, index),
       );
   }
 
-  Widget buildMenuEntry(SideMenuData data, int index){
+  Widget buildMenuEntry(PanelData data, int index){
     int selectedIndex = widget.navigatingSignal.getNavSignal;
     final isSelected = selectedIndex == index;
     return InkWell(

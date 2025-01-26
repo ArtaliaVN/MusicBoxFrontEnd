@@ -1,26 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:music_box_front_end/data/navigating_signal.dart';
-import 'package:music_box_front_end/data/song_data.dart';
+import 'package:music_box_front_end/models/song_dto.dart';
 import 'package:music_box_front_end/my_home_page.dart';
 
 class SongItemWidget extends StatefulWidget{
   final NavigatingSignal signal = HomeScreenState.navigatingSignal;
   final int index;
-  final SongData result;
-
-  SongItemWidget({super.key, required this.index, required this.result});
+  final SongDto song;
+  SongItemWidget({super.key, required this.index, required this.song});
 
   @override
   State<SongItemWidget> createState() => SongItemState(); 
 }
 class SongItemState extends State<SongItemWidget>{
+  
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => setState((){
+              widget.signal.setNavSignal(4);
               widget.signal.setIndex(widget.index);
-              widget.signal.setSong(widget.result.result[widget.signal.getIndex]);
-              widget.signal.toggleSignal(true);   
               },
             ),
       hoverColor: const Color.fromARGB(124, 255, 255, 255),
@@ -41,7 +40,7 @@ class SongItemState extends State<SongItemWidget>{
             child: ListView(
               children: [
                 Text(
-                  widget.result.result[widget.index].title,
+                  "Title: ${widget.song.songName}",
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
@@ -50,7 +49,7 @@ class SongItemState extends State<SongItemWidget>{
                   ),
                 ),
                 Text(
-                  "Artist: ${widget.result.result[widget.index].artist} ",
+                  "Artist: ${widget.song.artistName}",
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(

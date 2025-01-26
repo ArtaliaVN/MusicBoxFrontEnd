@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:music_box_front_end/models/song_model.dart';
 
 class NavigatingSignal with ChangeNotifier {
   int navigatingSignal = 0;
@@ -10,9 +9,6 @@ class NavigatingSignal with ChangeNotifier {
 
   bool viewSelectedSignal = false;
   bool get viewSignal => viewSelectedSignal;
-
-  SongModel song = SongModel(songID: -1, title: "null", artist: "null", information: "null", view: 0, upvoteCount: 0, songURL: "null", songPoster: "null");
-  SongModel get getSong => song;
 
   setNavSignal(int returnSignal){
     navigatingSignal = returnSignal;
@@ -26,13 +22,5 @@ class NavigatingSignal with ChangeNotifier {
 
   setIndex(int index){
     this.index = index;
-  }
-
-  setSong(SongModel song){
-    this.song = song;
-  }
-
-  resetSong(){
-    song = SongModel(songID: -1, title: "null", artist: "null", information: "null", view: 0, upvoteCount: 0, songURL: "null", songPoster: "null");;
   }
 }

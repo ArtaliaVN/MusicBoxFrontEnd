@@ -1,6 +1,6 @@
 import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter/material.dart';
-import 'package:music_box_front_end/widgets/artist_horizontal_scrollpar.dart';
+import 'package:music_box_front_end/widgets/artist_horizontal_scroll_par.dart';
 import 'package:music_box_front_end/widgets/song_horizontal_scroll_par.dart';
 
 class HomeWidget extends StatelessWidget{
