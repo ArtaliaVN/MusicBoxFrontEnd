@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 
 class NavigatingSignal with ChangeNotifier {
+  static NavigatingSignal nav = NavigatingSignal();
+  NavigatingSignal get getNav => nav;
+
   int navigatingSignal = 0;
   int get getNavSignal => navigatingSignal;
 
   int index = 0;
   int get getIndex => index;
 
-  bool viewSelectedSignal = false;
+  static bool viewSelectedSignal = false;
   bool get viewSignal => viewSelectedSignal;
 
   setNavSignal(int returnSignal){

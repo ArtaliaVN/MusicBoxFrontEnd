@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:music_box_front_end/data/navigating_signal.dart';
+import 'package:music_box_front_end/data/transferringData/navigating_signal.dart';
 import 'package:music_box_front_end/models/song_dto.dart';
-import 'package:music_box_front_end/my_home_page.dart';
 
 class SongItemWidget extends StatefulWidget{
-  final NavigatingSignal signal = HomeScreenState.navigatingSignal;
   final int index;
   final SongDto song;
   SongItemWidget({super.key, required this.index, required this.song});
@@ -18,8 +16,8 @@ class SongItemState extends State<SongItemWidget>{
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => setState((){
-              widget.signal.setNavSignal(4);
-              widget.signal.setIndex(widget.index);
+              NavigatingSignal().getNav.setNavSignal(4);
+              NavigatingSignal().getNav.setIndex(widget.index);
               },
             ),
       hoverColor: const Color.fromARGB(124, 255, 255, 255),

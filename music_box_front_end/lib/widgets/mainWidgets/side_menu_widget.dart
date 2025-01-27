@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:music_box_front_end/data/navigating_signal.dart';
+import 'package:music_box_front_end/data/transferringData/navigating_signal.dart';
 import 'package:music_box_front_end/data/panel_data.dart';
 
 class SideMenuWidget extends StatefulWidget {
-  final NavigatingSignal navigatingSignal;
-  const SideMenuWidget({super.key, required this.navigatingSignal});
+  const SideMenuWidget({super.key});
 
   @override
   State<StatefulWidget> createState() => _SideMenyWidgetState(); 
@@ -23,13 +22,13 @@ class _SideMenyWidgetState extends State<SideMenuWidget> {
   }
 
   Widget buildMenuEntry(PanelData data, int index){
-    int selectedIndex = widget.navigatingSignal.getNavSignal;
+    int selectedIndex = NavigatingSignal().getNav.getNavSignal;
     final isSelected = selectedIndex == index;
     return InkWell(
         onTap: () => setState(() {
           selectedIndex = index;
-          widget.navigatingSignal.toggleSignal(false);
-          widget.navigatingSignal.setNavSignal(index);
+          NavigatingSignal().getNav.toggleSignal(false);
+          NavigatingSignal().getNav.setNavSignal(index);
         }),
         borderRadius: BorderRadius.circular(15),
         hoverColor:isSelected?null: Colors.white,

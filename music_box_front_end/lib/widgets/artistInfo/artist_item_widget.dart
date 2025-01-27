@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:music_box_front_end/data/navigating_signal.dart';
+import 'package:music_box_front_end/data/transferringData/navigating_signal.dart';
 import 'package:music_box_front_end/models/artist_dto.dart';
-import 'package:music_box_front_end/my_home_page.dart';
 
 class ArtistItemWidget extends StatefulWidget{
-  final NavigatingSignal signal = HomeScreenState.navigatingSignal;
   final int index;
   final ArtistDto artist;
   ArtistItemWidget({super.key, required this.index, required this.artist});
@@ -19,8 +17,8 @@ class ArtistItemWidgetState extends State<ArtistItemWidget>{
   Widget build(BuildContext context){
     return InkWell(
       onTap: () => setState((){
-              widget.signal.setIndex(widget.index);
-              widget.signal.toggleSignal(true);   
+              NavigatingSignal().getNav.setIndex(widget.index);
+              NavigatingSignal().getNav.toggleSignal(true);   
               },
             ),
       hoverColor: const Color.fromARGB(124, 255, 255, 255),

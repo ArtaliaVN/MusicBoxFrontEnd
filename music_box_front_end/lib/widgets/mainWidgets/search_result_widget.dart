@@ -1,10 +1,9 @@
 import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter/material.dart';
-import 'package:music_box_front_end/data/navigating_signal.dart';
+import 'package:music_box_front_end/data/transferringData/navigating_signal.dart';
 import 'package:music_box_front_end/models/song_dto.dart';
-import 'package:music_box_front_end/my_home_page.dart';
 import 'package:music_box_front_end/remote/remote_service.dart';
-import 'package:music_box_front_end/widgets/song_item_widget.dart';
+import 'package:music_box_front_end/widgets/searchPar/songs_extended_list_view_widget.dart';
 
 class SearchResultWidget extends StatefulWidget {
   const SearchResultWidget({super.key});
@@ -15,7 +14,6 @@ class SearchResultWidget extends StatefulWidget {
 
 class SearchResultState extends State<SearchResultWidget>{
   int selectedIndex = 0;
-  final NavigatingSignal signal = HomeScreenState.navigatingSignal;
   List<SongDto> songs = [];
 
   @override
@@ -45,18 +43,11 @@ class SearchResultState extends State<SearchResultWidget>{
           builder: (context, snapshot){
             if(snapshot.connectionState == ConnectionState.done){
               return ListenableBuilder(
-                listenable: signal,
-                    builder: (BuildContext context, Widget? child) {
-                      return GridView.builder(
-                            gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(maxCrossAxisExtent: 260, crossAxisSpacing: 10, mainAxisSpacing: 10, childAspectRatio: 0.85),
-                            scrollDirection: Axis.vertical,
-                            itemCount: songs.length,
-                            itemBuilder: (context, index) {
-                                return GridTile(child: SongItemWidget(index: index, song: songs[index]));
-                              }
-                            ); 
-                        },
-                      );
+                listenable: NavigatingSignal().getNav,
+                  builder: (BuildContext context, Widget? child) {
+                    return SongsExtendedListViewWidget(songs: songs);
+                  },
+                );
               }
               else{
                 return Center(child: CircularProgressIndicator());

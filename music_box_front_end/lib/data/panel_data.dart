@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:music_box_front_end/widgets/artist_detail_page_widget.dart';
-import 'package:music_box_front_end/widgets/home_widget.dart';
-import 'package:music_box_front_end/widgets/library_widget.dart';
-import 'package:music_box_front_end/widgets/search_result_widget.dart';
-import 'package:music_box_front_end/widgets/setting_widget.dart';
-import 'package:music_box_front_end/widgets/song_detailed_page_widget.dart';
+import 'package:music_box_front_end/widgets/artistInfo/artist_detail_page_widget.dart';
+import 'package:music_box_front_end/widgets/mainWidgets/home_widget.dart';
+import 'package:music_box_front_end/widgets/mainWidgets/library_widget.dart';
+import 'package:music_box_front_end/widgets/mainWidgets/search_result_widget.dart';
+import 'package:music_box_front_end/widgets/mainWidgets/setting_widget.dart';
+import 'package:music_box_front_end/widgets/songInfo/song_detailed_page_widget.dart';
 
 import '../models/panel_model.dart';
 

@@ -1,7 +1,6 @@
 import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter/material.dart';
-import 'package:music_box_front_end/data/navigating_signal.dart';
-import 'package:music_box_front_end/my_home_page.dart';
+import 'package:music_box_front_end/data/transferringData/navigating_signal.dart';
 
 class SongDetailedPageWidget extends StatefulWidget{
   
@@ -14,7 +13,6 @@ class SongDetailedPageWidget extends StatefulWidget{
 class SongDetailedPageState extends State<SongDetailedPageWidget>{
   @override
   Widget build(BuildContext context){
-    final NavigatingSignal signal = HomeScreenState.navigatingSignal;
     return Container(
       decoration: BoxDecoration(
         border: Border.all(
@@ -39,7 +37,7 @@ class SongDetailedPageState extends State<SongDetailedPageWidget>{
                     Icons.arrow_back,
                   ),
                   onTap: () => {
-                    signal.toggleSignal(false),
+                    NavigatingSignal().getNav.toggleSignal(false),
                   },
                 )
               ]

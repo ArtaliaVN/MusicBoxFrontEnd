@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:music_box_front_end/data/navigating_signal.dart';
-import 'package:music_box_front_end/widgets/dash_board_widget.dart';
-import 'package:music_box_front_end/widgets/side_menu_widget.dart';
+import 'package:music_box_front_end/widgets/mainWidgets/dash_board_widget.dart';
+import 'package:music_box_front_end/widgets/mainWidgets/side_menu_widget.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -11,8 +10,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class HomeScreenState extends State<MyHomePage> {
-  static final NavigatingSignal navigatingSignal = NavigatingSignal();
-
+  
   @override
   Widget build(BuildContext context){
     return Container(
@@ -25,40 +23,36 @@ class HomeScreenState extends State<MyHomePage> {
       child: Scaffold(
       backgroundColor: Colors.transparent,
       body: Container(
-        margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
-        child: Row(
-          children: [
-            //Left tools par
-            Expanded(
-              flex:0,
-              child: Container(
-                margin: EdgeInsets.fromLTRB(5, 5, 5, 5),
-                child: SizedBox(
-                  width: 120,
-                  child: SideMenuWidget(navigatingSignal: navigatingSignal)
-                  ),
-              )
-            ),
-
-            //Dash board
-            Expanded(
-              flex: 1,
-              child: Column(
-                children: [
-                  Expanded(
-                    flex:1,
-                    child: DashBoardWidget(navigatingSignal: navigatingSignal),
-                  ),
-                  SizedBox(
-                    
-                  ),
-                ],
+          margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
+          child: Row(
+            children: [
+              //Left tools par
+              Expanded(
+                flex:0,
+                child: Container(
+                  margin: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                  child: SizedBox(
+                    width: 120,
+                    child: SideMenuWidget()
+                    ),
+                )
               ),
-            )
 
-          ],  
-        ),
-      )
+              //Dash board
+              Expanded(
+                flex: 1,
+                child: Column(
+                  children: [
+                    Expanded(
+                      flex:1,
+                      child: DashBoardWidget(),
+                    ),
+                  ],
+                ),
+              )
+            ],  
+          ),
+        )
       )
     );
   }
