@@ -12,8 +12,8 @@ class HeaderWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          NavigationButtonWidget(icon: Icons.arrow_back_outlined),
-          NavigationButtonWidget(icon: Icons.arrow_forward_outlined),
+          NavigationButtonWidget(icon: Icons.arrow_back_outlined, state: 1),
+          NavigationButtonWidget(icon: Icons.arrow_forward_outlined, state: 2),
           SearchParWidget(),
         ],
       )

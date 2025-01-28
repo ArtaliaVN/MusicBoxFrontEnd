@@ -40,7 +40,7 @@ class SongHorizontalScrollParState extends State<SongHorizontalScrollPar> {
                 physics: NeverScrollableScrollPhysics(),
                 itemCount: songs.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return GridTile(child: SongItemWidget(index: index, song: songs[index]));
+                  return GridTile(child: SongItemWidget(song: songs[index]));
                 },
               );
             }

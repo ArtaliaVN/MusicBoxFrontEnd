@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:music_box_front_end/data/transferringData/medium_data.dart';
 import 'package:music_box_front_end/data/transferringData/navigating_signal.dart';
 import 'package:music_box_front_end/models/artist_dto.dart';
 
@@ -15,10 +16,12 @@ class ArtistItemWidgetState extends State<ArtistItemWidget>{
 
   @override
   Widget build(BuildContext context){
+    MediumData data = MediumData();
+    data.setArtist(widget.artist);
     return InkWell(
       onTap: () => setState((){
-              NavigatingSignal().getNav.setIndex(widget.index);
-              NavigatingSignal().getNav.toggleSignal(true);   
+              NavigatingSignal().getNav.setNavData(data);
+              NavigatingSignal().setNavSignal(5);
               },
             ),
       hoverColor: const Color.fromARGB(124, 255, 255, 255),

@@ -9,6 +9,12 @@ class SearchResultWidget extends StatefulWidget {
   const SearchResultWidget({super.key});
 
   @override
+  createElement() {
+    NavigatingSignal().getNav.record();
+    return super.createElement();
+  }
+
+  @override
   State<SearchResultWidget> createState() => SearchResultState();
 }
 

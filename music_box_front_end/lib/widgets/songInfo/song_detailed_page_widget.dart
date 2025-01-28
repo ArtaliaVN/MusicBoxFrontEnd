@@ -1,10 +1,16 @@
 import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter/material.dart';
 import 'package:music_box_front_end/data/transferringData/navigating_signal.dart';
+import 'package:music_box_front_end/models/song_dto.dart';
 
 class SongDetailedPageWidget extends StatefulWidget{
-  
-  SongDetailedPageWidget({super.key,});
+  SongDetailedPageWidget({super.key});
+
+  @override
+  createElement() {
+    NavigatingSignal().getNav.record();
+    return super.createElement();
+  }
 
   @override
   State<SongDetailedPageWidget> createState() => SongDetailedPageState();
@@ -13,6 +19,7 @@ class SongDetailedPageWidget extends StatefulWidget{
 class SongDetailedPageState extends State<SongDetailedPageWidget>{
   @override
   Widget build(BuildContext context){
+    SongDto song = NavigatingSignal().getNav.getData.song;
     return Container(
       decoration: BoxDecoration(
         border: Border.all(
@@ -27,23 +34,6 @@ class SongDetailedPageState extends State<SongDetailedPageWidget>{
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-           Expanded(
-            flex: 0,
-             child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                InkWell(
-                  child: Icon(
-                    Icons.arrow_back,
-                  ),
-                  onTap: () => {
-                    NavigatingSignal().getNav.toggleSignal(false),
-                  },
-                )
-              ]
-              ),
-           ),
-      
             Expanded(
               flex: 1,
               child: ListView(   
@@ -69,7 +59,7 @@ class SongDetailedPageState extends State<SongDetailedPageWidget>{
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "null",
+                              song.songName,
                               maxLines: 3,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
@@ -79,7 +69,7 @@ class SongDetailedPageState extends State<SongDetailedPageWidget>{
                             ),
     
                             Text(
-                              "Artist: null",
+                              "Artist: ${song.artistName}",
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
@@ -99,7 +89,7 @@ class SongDetailedPageState extends State<SongDetailedPageWidget>{
                         padding: EdgeInsets.all(20),
                         alignment: Alignment.topLeft,
                         child: Text(
-                          "Description: null",
+                          "Description: ${song.songLength}",
                           style: TextStyle(
                             color: Colors.white,
                           ),

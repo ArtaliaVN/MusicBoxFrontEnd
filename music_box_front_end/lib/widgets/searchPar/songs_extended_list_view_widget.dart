@@ -24,7 +24,6 @@ class SongsExtendedListViewWidgetState extends State<SongsExtendedListViewWidget
       itemBuilder: (context, index) {
         return GridTile(
           child: SongItemWidget(
-            index: index, 
             song: widget.songs[index]
           )
         );

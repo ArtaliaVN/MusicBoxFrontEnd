@@ -1,9 +1,9 @@
 class SongDto {
-  final int id;
-  final String songLink;
-  final int songLength;
-  final String songName;
-  final String artistName;
+  int id;
+  String songLink;
+  int songLength;
+  String songName;
+  String artistName;
 
   SongDto({
     required this.id,

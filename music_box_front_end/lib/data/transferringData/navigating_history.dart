@@ -1,12 +1,10 @@
-import 'package:flutter/material.dart';
+import 'dart:collection';
+
 import 'package:music_box_front_end/data/transferringData/medium_data.dart';
 
-class NavigatingHistory {
-  int historyId = -1;
-  static int currentHistoryStep = -1;
-  final Widget historyWidget;
+final class NavigatingHistory extends LinkedListEntry<NavigatingHistory>{
   final MediumData mediumHistoryData;
   final int panelIndexAtThatMoment;
-
-  NavigatingHistory(this.historyId, this.historyWidget, this.mediumHistoryData, this.panelIndexAtThatMoment);
+  
+  NavigatingHistory(this.mediumHistoryData, this.panelIndexAtThatMoment);
 }

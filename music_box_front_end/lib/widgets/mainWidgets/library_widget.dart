@@ -1,8 +1,15 @@
 import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter/material.dart';
+import 'package:music_box_front_end/data/transferringData/navigating_signal.dart';
 
 class LibraryWidget extends StatefulWidget{
   const LibraryWidget({super.key});
+
+  @override
+  createElement() {
+    NavigatingSignal().getNav.record();
+    return super.createElement();
+  }
 
   @override
   State<LibraryWidget> createState() => LibraryWidgetState();

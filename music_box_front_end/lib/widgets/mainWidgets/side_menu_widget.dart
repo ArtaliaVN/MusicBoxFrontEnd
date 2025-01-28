@@ -27,7 +27,6 @@ class _SideMenyWidgetState extends State<SideMenuWidget> {
     return InkWell(
         onTap: () => setState(() {
           selectedIndex = index;
-          NavigatingSignal().getNav.toggleSignal(false);
           NavigatingSignal().getNav.setNavSignal(index);
         }),
         borderRadius: BorderRadius.circular(15),
@@ -37,7 +36,7 @@ class _SideMenyWidgetState extends State<SideMenuWidget> {
             borderRadius:  const BorderRadius.all(
               Radius.circular(10.0),
             ),
-            color: isSelected? Colors.white.withAlpha(50) : Colors.transparent,
+            color: Colors.transparent,
           ),
           child: Row(
             children: [
@@ -45,7 +44,7 @@ class _SideMenyWidgetState extends State<SideMenuWidget> {
                 padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                 child: Icon(
                   data.menu[index].icon,
-                  color: isSelected? Colors.white : Colors.grey,
+                  color:Colors.grey,
                 ),
               ),
             
@@ -54,7 +53,7 @@ class _SideMenyWidgetState extends State<SideMenuWidget> {
                 style: TextStyle(
                   fontWeight: FontWeight.normal,
                   fontSize: 16,
-                  color: isSelected? Colors.white : Colors.grey,
+                  color:Colors.grey,
                 )
                 ),
             ],

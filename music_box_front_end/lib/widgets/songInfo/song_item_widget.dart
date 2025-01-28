@@ -1,23 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:music_box_front_end/data/transferringData/medium_data.dart';
 import 'package:music_box_front_end/data/transferringData/navigating_signal.dart';
 import 'package:music_box_front_end/models/song_dto.dart';
 
 class SongItemWidget extends StatefulWidget{
-  final int index;
+ 
   final SongDto song;
-  SongItemWidget({super.key, required this.index, required this.song});
+  SongItemWidget({super.key, required this.song});
 
   @override
   State<SongItemWidget> createState() => SongItemState(); 
 }
 class SongItemState extends State<SongItemWidget>{
-  
+
   @override
   Widget build(BuildContext context) {
+    MediumData data = MediumData();
+    data.setSong(widget.song);
     return InkWell(
       onTap: () => setState((){
+              NavigatingSignal().getNav.setNavData(data);
               NavigatingSignal().getNav.setNavSignal(4);
-              NavigatingSignal().getNav.setIndex(widget.index);
               },
             ),
       hoverColor: const Color.fromARGB(124, 255, 255, 255),

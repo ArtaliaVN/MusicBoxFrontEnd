@@ -1,8 +1,8 @@
 class ArtistDto {
-  final int id;
-  final String artistName;
-  final String artistInformation;
-  final String email;
+  int id;
+  String artistName;
+  String artistInformation;
+  String email;
 
   ArtistDto({
       required this.id,

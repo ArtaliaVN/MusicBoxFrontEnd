@@ -1,10 +1,17 @@
 import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter/material.dart';
+import 'package:music_box_front_end/data/transferringData/navigating_signal.dart';
 import 'package:music_box_front_end/widgets/artistInfo/artist_horizontal_scroll_par.dart';
 import 'package:music_box_front_end/widgets/songInfo/song_horizontal_scroll_par.dart';
 
 class HomeWidget extends StatelessWidget{
   const HomeWidget({super.key});
+
+  @override
+  createElement() {
+    NavigatingSignal().getNav.record();
+    return super.createElement();
+  }
   
   @override
   Widget build(Object context) {
