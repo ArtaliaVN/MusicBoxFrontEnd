@@ -21,7 +21,7 @@ class ArtistItemWidgetState extends State<ArtistItemWidget>{
     return InkWell(
       onTap: () => setState((){
               NavigatingSignal().getNav.setNavData(data);
-              NavigatingSignal().setNavSignal(5);
+              NavigatingSignal().setNavSignal(6);
               },
             ),
       hoverColor: const Color.fromARGB(124, 255, 255, 255),
@@ -39,27 +39,14 @@ class ArtistItemWidgetState extends State<ArtistItemWidget>{
 
           child: Padding(
             padding: const EdgeInsets.all(10),
-            child: ListView(
-              children: [
-                Text(
-                  widget.artist.artistInformation,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                  ),
-                ),
-                Text(
-                  "Artist: ${widget.artist.artistName}",
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                  ),
-                )
-              ],
+            child: Text(
+              "Artist: ${widget.artist.userName}",
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+              ),
             ),
           )
         ),

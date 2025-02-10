@@ -11,7 +11,9 @@ class NavigationButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     IconData iconData = icon;
     return InkWell(
-      onTap: () => HistoryList().navigation(state, NavigatingSignal().getNav),
+      onTap: () => (
+        HistoryList().navigation(state, NavigatingSignal().getNav)
+        ),
       child: Container(
         padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
         child: Icon(
@@ -22,4 +24,4 @@ class NavigationButtonWidget extends StatelessWidget {
         ),
       );
   }
-}
+  }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:music_box_front_end/models/song_dto.dart';
-import 'package:music_box_front_end/remote/remote_service.dart';
+import 'package:music_box_front_end/service/remote_service.dart';
 import 'package:music_box_front_end/widgets/songInfo/song_item_widget.dart';
 
 class SongHorizontalScrollPar extends StatefulWidget{

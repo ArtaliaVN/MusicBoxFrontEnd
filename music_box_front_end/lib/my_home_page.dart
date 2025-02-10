@@ -32,7 +32,7 @@ class HomeScreenState extends State<MyHomePage> {
                 child: Container(
                   margin: EdgeInsets.fromLTRB(5, 5, 5, 5),
                   child: SizedBox(
-                    width: 120,
+                    width: 150,
                     child: SideMenuWidget()
                     ),
                 )

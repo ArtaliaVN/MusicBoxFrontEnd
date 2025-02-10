@@ -20,7 +20,7 @@ class SongItemState extends State<SongItemWidget>{
     return InkWell(
       onTap: () => setState((){
               NavigatingSignal().getNav.setNavData(data);
-              NavigatingSignal().getNav.setNavSignal(4);
+              NavigatingSignal().getNav.setNavSignal(5);
               },
             ),
       hoverColor: const Color.fromARGB(124, 255, 255, 255),

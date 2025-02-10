@@ -2,7 +2,7 @@ import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter/material.dart';
 import 'package:music_box_front_end/data/transferringData/navigating_signal.dart';
 import 'package:music_box_front_end/models/song_dto.dart';
-import 'package:music_box_front_end/remote/remote_service.dart';
+import 'package:music_box_front_end/service/remote_service.dart';
 import 'package:music_box_front_end/widgets/searchPar/songs_extended_list_view_widget.dart';
 
 class SearchResultWidget extends StatefulWidget {
@@ -55,9 +55,9 @@ class SearchResultState extends State<SearchResultWidget>{
                   },
                 );
               }
-              else{
-                return Center(child: CircularProgressIndicator());
-              }
+            else{
+              return Center(child: CircularProgressIndicator());
+            }
           }
         ),
       ),

@@ -23,9 +23,6 @@ class NavigatingSignal with ChangeNotifier {
   }
 
   record(){
-    HistoryList().customPush(true, NavigatingHistory(getData, navigatingSignal));
-    print("Histories${HistoryList().getNavigatingHistories.toList()}");
-    print("Future${HistoryList().getNavigatingFuture.toList()}");
-    print("Length: ${HistoryList().getNavigatingHistories.length} _ Current index: ${NavigatingSignal().getNav.getNavSignal}");
+    HistoryList().customPush(NavigatingHistory(getData, navigatingSignal));
   }
 }

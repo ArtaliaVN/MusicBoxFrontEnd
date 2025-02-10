@@ -7,40 +7,50 @@ class HistoryList {
   Stack<NavigatingHistory> get getNavigatingHistories => navigatingHistories;
   
   static Stack<NavigatingHistory> navigatingFutures = Stack();
-  Stack<NavigatingHistory> get getNavigatingFuture => navigatingFutures;
+  Stack<NavigatingHistory> get getNavigatingFutures => navigatingFutures;
 
   static bool isAllowed = true;
 
-  customPush(bool isAllowed, NavigatingHistory currentTabs){
+  customPush(NavigatingHistory currentTabs){
     if(isAllowed){
       navigatingHistories.push(currentTabs);
       navigatingFutures.clear();
     }
-    else if(!isAllowed){
-      navigatingFutures.push(currentTabs);
+    else {
       isAllowed = true;
     }
   }
 
+  setAllow(bool allow){
+    isAllowed = allow;
+  }
+
   forward(NavigatingSignal signal){
-    if(navigatingFutures.isNotEmpty){
-      isAllowed = false;
+    if(navigatingFutures.length > 1){
       NavigatingHistory result = navigatingFutures.pop();
+      navigatingHistories.push(result);    
+      result = navigatingFutures.top();
+      print("Histories${HistoryList().getNavigatingHistories.toList()}");
+      print("Future${HistoryList().getNavigatingFutures.toList()}");
       signal.setNavData(result.mediumHistoryData);
       signal.setNavSignal(result.panelIndexAtThatMoment);
     }
   }
 
   backward(NavigatingSignal signal){
-    if(navigatingHistories.isNotEmpty){
-      isAllowed = false;
+    if(navigatingHistories.length > 1){
       NavigatingHistory result = navigatingHistories.pop();
+      navigatingFutures.push(result);
+      result = navigatingHistories.top();
+      print("Histories${HistoryList().getNavigatingHistories.toList()}");
+      print("Future${HistoryList().getNavigatingFutures.toList()}");
       signal.setNavData(result.mediumHistoryData);
       signal.setNavSignal(result.panelIndexAtThatMoment);
     }
   }
 
   navigation(int state, NavigatingSignal signal){
+    isAllowed = false;
     switch(state){
       case 1: 
         backward(signal);

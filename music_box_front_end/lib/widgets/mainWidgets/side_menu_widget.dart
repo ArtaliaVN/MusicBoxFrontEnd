@@ -16,7 +16,7 @@ class _SideMenyWidgetState extends State<SideMenuWidget> {
     final data= PanelData();
     return ListView.builder(
         shrinkWrap: true,
-        itemCount: 4,
+        itemCount: 5,
         itemBuilder: (context, index) => buildMenuEntry(data, index),
       );
   }

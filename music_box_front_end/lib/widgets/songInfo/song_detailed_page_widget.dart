@@ -2,6 +2,7 @@ import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter/material.dart';
 import 'package:music_box_front_end/data/transferringData/navigating_signal.dart';
 import 'package:music_box_front_end/models/song_dto.dart';
+import 'package:music_box_front_end/widgets/songInfo/song_audio_player_widget.dart';
 
 class SongDetailedPageWidget extends StatefulWidget{
   SongDetailedPageWidget({super.key});
@@ -31,79 +32,55 @@ class SongDetailedPageState extends State<SongDetailedPageWidget>{
       child: BlurryContainer(
         blur: 5,
         padding: EdgeInsets.all(20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+        child: ListView(
           children: [
-            Expanded(
-              flex: 1,
-              child: ListView(   
+            SizedBox(
+              height: 400,
+              child: Row(
                 children: [
-                  SizedBox(
-                    child: Row(
-                      children: [
-                        Container(
-                          constraints: BoxConstraints(
-                            minHeight: 200,
-                            minWidth: 200,
-                            maxHeight: 400,
-                            maxWidth: 400,
-                          ),
-                          margin: EdgeInsets.all(20),  
-                          decoration: BoxDecoration(
-                            color: const Color.fromARGB(103, 244, 67, 54),
-                          ),
-                        ),
-    
-                        Flexible(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              song.songName,
-                              maxLines: 3,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                                ),
-                            ),
-    
-                            Text(
-                              "Artist: ${song.artistName}",
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                                ),
-                            ),
-                          ],
-                        ),
-                        ),
-                      ],
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.green,
+                    ),
+                    child: SizedBox.square(
+                      dimension: 350,
                     ),
                   ),
-                    
-                    SizedBox(
-                      child: Container(
-                        padding: EdgeInsets.all(20),
-                        alignment: Alignment.topLeft,
-                        child: Text(
-                          "Description: ${song.songLength}",
-                          style: TextStyle(
+                  Flexible(
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.symmetric(horizontal: 10),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            song.songName,
+                            maxLines: 3,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
                             color: Colors.white,
+                            fontSize: 20,
+                              ),
                           ),
-                        ),
+                    
+                          Text(
+                            "Artist: ${song.artistName}",
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                              ),
+                          ),
+                        ],
                       ),
-                    )
+                    ),
+                  ),
                 ],
               ),
             ),
-      
-            Expanded(
-              flex: 0,
-              child: Container(),
-            )
+
+            SongAudioPlayerWidget(),
           ]
         ),  
       ),
