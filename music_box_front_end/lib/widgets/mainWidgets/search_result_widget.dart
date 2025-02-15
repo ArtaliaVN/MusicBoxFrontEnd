@@ -1,18 +1,13 @@
 import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter/material.dart';
-import 'package:music_box_front_end/data/transferringData/navigating_signal.dart';
+import 'package:music_box_front_end/data/navigating_signal.dart';
 import 'package:music_box_front_end/models/song_dto.dart';
 import 'package:music_box_front_end/service/remote_service.dart';
 import 'package:music_box_front_end/widgets/searchPar/songs_extended_list_view_widget.dart';
 
 class SearchResultWidget extends StatefulWidget {
-  const SearchResultWidget({super.key});
-
-  @override
-  createElement() {
-    NavigatingSignal().getNav.record();
-    return super.createElement();
-  }
+  final NavigatingSignal navigatingSignal;
+  const SearchResultWidget({super.key, required this.navigatingSignal});
 
   @override
   State<SearchResultWidget> createState() => SearchResultState();
@@ -44,21 +39,28 @@ class SearchResultState extends State<SearchResultWidget>{
       ),
       child: BlurryContainer(
         blur: 5,
-        child: FutureBuilder(
-          future: getData(),
-          builder: (context, snapshot){
-            if(snapshot.connectionState == ConnectionState.done){
-              return ListenableBuilder(
-                listenable: NavigatingSignal().getNav,
-                  builder: (BuildContext context, Widget? child) {
-                    return SongsExtendedListViewWidget(songs: songs);
-                  },
-                );
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.black38,
+            borderRadius: BorderRadiusDirectional.circular(8),
+          ),
+          padding: EdgeInsets.all(10),
+          child: FutureBuilder(
+            future: getData(),
+            builder: (context, snapshot){
+              if(snapshot.connectionState == ConnectionState.done){
+                return ListenableBuilder(
+                    listenable: widget.navigatingSignal,
+                    builder: (BuildContext context, Widget? child) {
+                      return SongsExtendedListViewWidget(songs: songs, navigatingSignal: widget.navigatingSignal);
+                    },
+                  );
+                }
+              else{
+                return Center(child: CircularProgressIndicator());
               }
-            else{
-              return Center(child: CircularProgressIndicator());
             }
-          }
+          ),
         ),
       ),
     );

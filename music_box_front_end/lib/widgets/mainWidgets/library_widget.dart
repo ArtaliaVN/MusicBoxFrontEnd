@@ -1,15 +1,8 @@
 import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter/material.dart';
-import 'package:music_box_front_end/data/transferringData/navigating_signal.dart';
 
 class LibraryWidget extends StatefulWidget{
   const LibraryWidget({super.key});
-
-  @override
-  createElement() {
-    NavigatingSignal().getNav.record();
-    return super.createElement();
-  }
 
   @override
   State<LibraryWidget> createState() => LibraryWidgetState();
@@ -29,6 +22,10 @@ class LibraryWidgetState extends State<LibraryWidget>{
       child: BlurryContainer(
         child: Container(
           alignment: Alignment.topLeft,
+          decoration: BoxDecoration(
+            color: Colors.black38,
+            borderRadius: BorderRadiusDirectional.circular(8),
+          ),
           child: Text("Library page", style: TextStyle(color:Colors.white),),
           )
         )

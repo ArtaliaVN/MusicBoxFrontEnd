@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:music_box_front_end/data/transferringData/navigating_signal.dart';
-import 'package:music_box_front_end/data/panel_data.dart';
+import 'package:music_box_front_end/data/navigating_signal.dart';
+import 'package:music_box_front_end/models/panel_model.dart';
 
 class SideMenuWidget extends StatefulWidget {
-  const SideMenuWidget({super.key});
+  final NavigatingSignal navigatingSignal;
+  final List<PanelModel> menu;
+  const SideMenuWidget({super.key, required this.navigatingSignal, required this.menu});
 
   @override
   State<StatefulWidget> createState() => _SideMenyWidgetState(); 
@@ -13,21 +15,20 @@ class _SideMenyWidgetState extends State<SideMenuWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final data= PanelData();
     return ListView.builder(
         shrinkWrap: true,
         itemCount: 5,
-        itemBuilder: (context, index) => buildMenuEntry(data, index),
+        itemBuilder: (context, index) => buildMenuEntry(index),
       );
   }
 
-  Widget buildMenuEntry(PanelData data, int index){
-    int selectedIndex = NavigatingSignal().getNav.getNavSignal;
+  Widget buildMenuEntry(int index){
+    int selectedIndex = widget.navigatingSignal.getNavSignal;
     final isSelected = selectedIndex == index;
     return InkWell(
         onTap: () => setState(() {
           selectedIndex = index;
-          NavigatingSignal().getNav.setNavSignal(index);
+          widget.navigatingSignal.setNavSignal(index);
         }),
         borderRadius: BorderRadius.circular(15),
         hoverColor:isSelected?null: Colors.white,
@@ -43,13 +44,13 @@ class _SideMenyWidgetState extends State<SideMenuWidget> {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                 child: Icon(
-                  data.menu[index].icon,
+                  widget.menu[index].icon,
                   color:Colors.grey,
                 ),
               ),
             
               Text(
-                data.menu[index].title,
+                widget.menu[index].title,
                 style: TextStyle(
                   fontWeight: FontWeight.normal,
                   fontSize: 16,

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:music_box_front_end/data/navigating_signal.dart';
 import 'package:music_box_front_end/models/artist_dto.dart';
 import 'package:music_box_front_end/service/remote_service.dart';
 import 'package:music_box_front_end/widgets/artistInfo/artist_item_widget.dart';
 
 class ArtistHorizontalScrollpar extends StatefulWidget{
-  const ArtistHorizontalScrollpar({super.key});
+  final NavigatingSignal navigatingSignal;
+  const ArtistHorizontalScrollpar({super.key, required this.navigatingSignal});
 
   @override 
   State<ArtistHorizontalScrollpar> createState() => ArtistHorizontalScrollparState();
@@ -40,7 +42,7 @@ class ArtistHorizontalScrollparState extends State<ArtistHorizontalScrollpar> {
                 physics: NeverScrollableScrollPhysics(),
                 itemCount: artists.length,
                 itemBuilder: (context, index) {
-                  return GridTile(child: ArtistItemWidget(index: index, artist: artists[index],));
+                  return GridTile(child: ArtistItemWidget(index: index, artist: artists[index], navigatingSignal: widget.navigatingSignal,));
                 },
               );
             }

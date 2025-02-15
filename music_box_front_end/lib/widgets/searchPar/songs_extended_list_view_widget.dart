@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:music_box_front_end/data/navigating_signal.dart';
 import 'package:music_box_front_end/models/song_dto.dart';
 import 'package:music_box_front_end/widgets/songInfo/song_item_widget.dart';
 
 class SongsExtendedListViewWidget extends StatefulWidget {
+  final NavigatingSignal navigatingSignal;
   final List<SongDto> songs;
-  const SongsExtendedListViewWidget({super.key, required this.songs});
+  const SongsExtendedListViewWidget({super.key, required this.songs, required this.navigatingSignal});
    
   @override
   State<SongsExtendedListViewWidget> createState() => SongsExtendedListViewWidgetState();
@@ -24,7 +26,8 @@ class SongsExtendedListViewWidgetState extends State<SongsExtendedListViewWidget
       itemBuilder: (context, index) {
         return GridTile(
           child: SongItemWidget(
-            song: widget.songs[index]
+            song: widget.songs[index],
+            navigatingSignal: widget.navigatingSignal,
           )
         );
       }

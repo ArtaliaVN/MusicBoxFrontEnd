@@ -1,15 +1,8 @@
 import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter/material.dart';
-import 'package:music_box_front_end/data/transferringData/navigating_signal.dart';
 
 class SettingWidget extends StatelessWidget{
   const SettingWidget({super.key,});
-
-  @override
-  createElement() {
-    NavigatingSignal().getNav.record();
-    return super.createElement();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +16,10 @@ class SettingWidget extends StatelessWidget{
       ),
       child: BlurryContainer(
         child: Container(
+          decoration: BoxDecoration(
+            color: Colors.black38,
+            borderRadius: BorderRadiusDirectional.circular(8),
+          ),
           alignment: Alignment.topLeft,
           child: Text("Setting page", style: TextStyle(color:Colors.white),),
           )

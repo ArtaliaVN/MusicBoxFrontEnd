@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:music_box_front_end/data/transferringData/history_list.dart';
-import 'package:music_box_front_end/data/transferringData/navigating_signal.dart';
 
 class NavigationButtonWidget extends StatelessWidget {
   final IconData icon;
@@ -12,7 +10,6 @@ class NavigationButtonWidget extends StatelessWidget {
     IconData iconData = icon;
     return InkWell(
       onTap: () => (
-        HistoryList().navigation(state, NavigatingSignal().getNav)
         ),
       child: Container(
         padding: EdgeInsets.fromLTRB(5, 0, 5, 0),

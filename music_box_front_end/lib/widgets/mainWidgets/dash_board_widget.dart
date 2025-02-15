@@ -1,14 +1,17 @@
-import 'package:flutter/cupertino.dart';
-import 'package:music_box_front_end/data/panel_data.dart';
-import 'package:music_box_front_end/data/transferringData/navigating_signal.dart';
+
+import 'package:flutter/material.dart';
+import 'package:music_box_front_end/data/navigating_signal.dart';
+import 'package:music_box_front_end/models/panel_model.dart';
 import 'package:music_box_front_end/widgets/searchPar/header_widget.dart';
 
 class DashBoardWidget extends StatelessWidget{
-  const DashBoardWidget({super.key});
+  final NavigatingSignal navigatingSignal;
+  final List<PanelModel> menu;
+  const DashBoardWidget({super.key, required this.navigatingSignal, required this.menu});
 
   @override
   Widget build(BuildContext context) {
-    final PanelData data = PanelData();
+   
     return Column(
       children: [
         Expanded(
@@ -21,9 +24,9 @@ class DashBoardWidget extends StatelessWidget{
         Expanded(
           flex: 1,
           child: ListenableBuilder(
-            listenable: NavigatingSignal().getNav,
+            listenable: navigatingSignal,
             builder: (BuildContext context, Widget? child) {
-              return data.menu[NavigatingSignal().getNav.getNavSignal].widget;},
+              return menu[navigatingSignal.getNavSignal].widget;},
             ),
         ),
 

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:music_box_front_end/data/transferringData/medium_data.dart';
-import 'package:music_box_front_end/data/transferringData/navigating_signal.dart';
+import 'package:music_box_front_end/data/medium_data.dart';
+import 'package:music_box_front_end/data/navigating_signal.dart';
 import 'package:music_box_front_end/models/artist_dto.dart';
 
 class ArtistItemWidget extends StatefulWidget{
   final int index;
   final ArtistDto artist;
-  ArtistItemWidget({super.key, required this.index, required this.artist});
+  final NavigatingSignal navigatingSignal;
+  ArtistItemWidget({super.key, required this.index, required this.artist, required this.navigatingSignal});
 
   @override
   State<ArtistItemWidget> createState() => ArtistItemWidgetState();
@@ -20,24 +21,33 @@ class ArtistItemWidgetState extends State<ArtistItemWidget>{
     data.setArtist(widget.artist);
     return InkWell(
       onTap: () => setState((){
-              NavigatingSignal().getNav.setNavData(data);
-              NavigatingSignal().setNavSignal(6);
+              widget.navigatingSignal.setNavData(data);
+              widget.navigatingSignal.setNavSignal(6);
               },
             ),
-      hoverColor: const Color.fromARGB(124, 255, 255, 255),
       borderRadius: BorderRadius.circular(15),
-      child: DecoratedBox(
-          decoration: BoxDecoration(
-            color: const Color.fromARGB(255, 9, 31, 16),
-            border: Border.all(
-              color: Colors.black12,
-              style: BorderStyle.solid,
-              strokeAlign: BorderSide.strokeAlignCenter,
-            ),
-            borderRadius: BorderRadius.circular(15),
+      child: Column(
+        children: [
+          Expanded(
+            child: Container(
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    image: NetworkImage("http://localhost:8080/user/image/id=${widget.artist.id}/account"),
+                    fit: BoxFit.cover,
+                  ),
+                  border: Border.all(
+                    color: Colors.black12,
+                    style: BorderStyle.solid,
+                    strokeAlign: BorderSide.strokeAlignCenter,
+                  ),
+                ),
+              ),
           ),
 
-          child: Padding(
+          Expanded(
+            flex: 0,
+            child: Padding(
             padding: const EdgeInsets.all(10),
             child: Text(
               "Artist: ${widget.artist.userName}",
@@ -49,7 +59,9 @@ class ArtistItemWidgetState extends State<ArtistItemWidget>{
               ),
             ),
           )
-        ),
+          )
+        ],
+      ),
     );
   }
 } 

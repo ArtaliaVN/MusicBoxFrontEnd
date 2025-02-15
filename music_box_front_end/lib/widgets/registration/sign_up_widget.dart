@@ -1,8 +1,8 @@
 import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter/material.dart';
+import 'package:music_box_front_end/data/navigating_signal.dart';
 import 'package:music_box_front_end/models/artist_sending_dto.dart';
 import 'package:music_box_front_end/service/remote_service.dart';
-import 'package:music_box_front_end/widgets/registration/regis_nav_signal.dart';
 import 'package:music_box_front_end/widgets/registration/textfield_widget.dart';
 
 class SignUpWidget extends StatefulWidget{
@@ -14,7 +14,7 @@ class SignUpWidget extends StatefulWidget{
   final passwordConfirmField = TextfieldWidget(text: "Confirm password", width: 300, hideText: true);
   final dto = ArtistSendingDto();
   final service = RemoteService();
-  RegisNavSignal signal = RegisNavSignal();
+  final NavigatingSignal signal;
 
   SignUpWidget({super.key, required this.signal});
 
@@ -37,6 +37,10 @@ class SignUpState extends State<SignUpWidget>{
       ),
       child: BlurryContainer(
         child: Container(
+          decoration: BoxDecoration(
+            color: Colors.black38,
+            borderRadius: BorderRadiusDirectional.circular(8),
+          ),
           constraints: BoxConstraints(
             maxWidth: 400,
           ),
