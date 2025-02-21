@@ -89,6 +89,16 @@ class RemoteService {
     return artists;
   }
 
+  Future getArtistDtoListByUserNameOrEmail(String username, String email) async{
+    List<ArtistDto> artists = [];
+    var response = await http.get(Uri.http('localhost:8080', 'user/username=${username}_email=$email/account'));
+    if(response.statusCode == 200){
+      var jsonData = jsonDecode(response.body);
+      artistToList(artists, jsonData);
+    }
+    return artists;
+  }
+
   Future getArtistDtoListAll() async{
     List<ArtistDto> artists = [];
     var response = await http.get(Uri.http('localhost:8080', 'user/accounts'));
@@ -101,7 +111,17 @@ class RemoteService {
 
   Future getSongDtoListByName(String name) async{
     List<SongDto> songs = [];
-    var response = await http.get(Uri.http('localhost:8080', 'song/songName=$name/account'));
+    var response = await http.get(Uri.http('localhost:8080', 'song/songName=$name/items'));
+    if(response.statusCode == 200){
+      var jsonData = jsonDecode(response.body);
+      songToList(songs, jsonData);
+    }
+    return songs;
+  }
+
+  Future getSongDtoListByArtistName(String artistName) async{
+    List<SongDto> songs = [];
+    var response = await http.get(Uri.http('localhost:8080', 'song/artistName=$artistName/items'));
     if(response.statusCode == 200){
       var jsonData = jsonDecode(response.body);
       songToList(songs, jsonData);

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:music_box_front_end/data/responsive_data.dart';
 import 'package:music_box_front_end/widgets/songInfo/music_provider.dart';
 
 class SongAudioPlayerWidget extends StatefulWidget{
@@ -12,6 +13,7 @@ class SongAudioPlayerWidget extends StatefulWidget{
 class SongAudioPlayerState extends State<SongAudioPlayerWidget>{
   @override
   Widget build(BuildContext context) {
+    final ResponsiveData responsiveData = ResponsiveData(context: context);
     return SizedBox(
       height: 100,
       child: Column(
@@ -36,7 +38,7 @@ class SongAudioPlayerState extends State<SongAudioPlayerWidget>{
                 Container(
                   constraints: BoxConstraints(
                     minWidth: 50,
-                    maxWidth: 200,
+                    maxWidth: responsiveData.isLessThan600()?  100:200,
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -88,11 +90,9 @@ class SongAudioPlayerState extends State<SongAudioPlayerWidget>{
               max: widget.musicProvider.totalDuration.inMilliseconds.toDouble(),
               value: widget.musicProvider.currentDuration.inMilliseconds.toDouble(), 
               activeColor: Colors.green,
-              onChanged: (double double) {
-            
-              },
+              onChanged: (double double) {},
 
-              onChangeEnd: (double double) {
+              onChangeEnd: (double double)  async {
                 widget.musicProvider.seek(Duration(milliseconds: double.toInt()));
               },
             );}

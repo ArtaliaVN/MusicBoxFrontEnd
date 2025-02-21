@@ -37,196 +37,209 @@ class SignUpState extends State<SignUpWidget>{
       ),
       child: BlurryContainer(
         child: Container(
+          alignment: Alignment.center,
+          padding: EdgeInsets.all(10),
           decoration: BoxDecoration(
             color: Colors.black38,
             borderRadius: BorderRadiusDirectional.circular(8),
           ),
-          constraints: BoxConstraints(
-            maxWidth: 400,
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                padding: EdgeInsets.fromLTRB(0, 10, 0, 8),
-                child: 
-                SizedBox(
-                  width: 300,
-                  child: Text(
-                    "Your email",
-                    style: TextStyle(
-                        color: Colors.white,
-                  
+          child: SizedBox(
+            width: 300,
+            height: 450,
+            child: ListView(
+              children: [
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 10, 0, 8),
+                  child: 
+                  SizedBox(
+                    width: 300,
+                    child: Text(
+                      "Your email",
+                      style: TextStyle(
+                          color: Colors.white,
+                    
+                        ),
                       ),
-                    ),
-                ),
-                ),
-          
-              widget.emailField,
-
-              Padding(
-                padding: EdgeInsets.fromLTRB(0, 10, 0, 8),
-                child: 
-                SizedBox(
-                  width: 300,
-                  child: Text(
-                    "Your username",
-                    style: TextStyle(
-                        color: Colors.white,
-                  
+                  ),
+                  ),
+            
+                widget.emailField,
+            
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 10, 0, 8),
+                  child: 
+                  SizedBox(
+                    width: 300,
+                    child: Text(
+                      "Your username",
+                      style: TextStyle(
+                          color: Colors.white,
+                    
+                        ),
                       ),
-                    ),
-                ),
-                ),
-          
-              widget.usernameField,
-          
-              SizedBox(
-                width: 300,
-                child: Row(
+                  ),
+                  ),
+            
+                widget.usernameField,
+            
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SizedBox(
-                      height: 75,
-                      width: 140,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.fromLTRB(0, 10, 0, 8),
-                            child: 
-                            SizedBox(
-                              width: 300,
-                              child: Text(
-                                "Your first name",
-                                style: TextStyle(
-                                    color: Colors.white,
-                              
-                                  ),
+                    Expanded(
+                      flex: 1,
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(0,0,5,0),
+                        child: SizedBox(
+                          height: 75,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(0, 10, 5, 8),
+                                child: 
+                                SizedBox(
+                                  width: 300,
+                                  child: Text(
+                                    "Your first name",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                  
+                                      ),
+                                    ),
                                 ),
-                            ),
-                            ),
-                    
-                          widget.firstnameField,
-                        ],
+                                ),
+                        
+                              widget.firstnameField,
+                            ],
+                          ),
+                        ),
                       ),
                     ),
                           
-                    SizedBox(
-                      height: 75,
-                      width: 140,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.fromLTRB(0, 10, 0, 8),
-                            child: 
-                            SizedBox(
-                              width: 300,
-                              child: Text(
-                                "Your last name",
-                                style: TextStyle(
-                                    color: Colors.white,
-                              
-                                  ),
+                    Expanded(
+                      flex: 1,
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(5,0,0,0),
+                        child: SizedBox(
+                          height: 75,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(5, 10, 0, 8),
+                                child: 
+                                SizedBox(
+                                  width: 300,
+                                  child: Text(
+                                    "Your last name",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                  
+                                      ),
+                                    ),
                                 ),
-                            ),
-                            ),
-                    
-                          widget.lastnameField,
-                        ],
+                                ),
+                        
+                              widget.lastnameField,
+                            ],
+                          ),
+                        ),
                       ),
                     )
                   ],
                 ),
-              ),
-
-              Padding(
-                padding: EdgeInsets.fromLTRB(0, 10, 0, 8),
-                child: SizedBox(
+            
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 10, 0, 8),
+                  child: SizedBox(
+                    width: 300,
+                    child: Text(
+                      "Password",
+                      style: TextStyle(
+                          color: Colors.white,
+                    
+                        ),
+                      ),
+                  ),
+                  ),
+                    
+                widget.passwordField,
+            
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 10, 0, 8),
+                  child: SizedBox(
+                    width: 300,
+                    child: Text(
+                      "Confirm password",
+                      style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                  ),
+                  ),
+                    
+                widget.passwordConfirmField,
+            
+                SizedBox(
                   width: 300,
-                  child: Text(
-                    "Password",
-                    style: TextStyle(
-                        color: Colors.white,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: Container(
+                          margin: EdgeInsets.fromLTRB(0,10,5,0),
+                          height: 35,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              width: 2,
+                              color: Colors.black38,
+                            ),
+                            borderRadius: const BorderRadius.all(Radius.circular(30)),
+                          ),
+                          child: FloatingActionButton(
+                            onPressed: () => setState(() {widget.signal.setNavSignal(4);}) ,
+                            backgroundColor: Colors.white,
+                            child: const Text(
+                              "Back",
+                            ),
+                          ),
+                        ),
+                      ),
                   
-                      ),
-                    ),
-                ),
-                ),
-        
-              widget.passwordField,
-
-              Padding(
-                padding: EdgeInsets.fromLTRB(0, 10, 0, 8),
-                child: SizedBox(
-                  width: 300,
-                  child: Text(
-                    "Confirm password",
-                    style: TextStyle(
-                        color: Colors.white,
-                      ),
-                    ),
-                ),
-                ),
-        
-              widget.passwordConfirmField,
-
-              SizedBox(
-                width: 300,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      margin: EdgeInsets.fromLTRB(0,10,0,0),
-                      width: 140,
-                      height: 35,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          width: 2,
-                          color: Colors.black38,
-                        ),
-                        borderRadius: const BorderRadius.all(Radius.circular(30)),
-                      ),
-                      child: FloatingActionButton(
-                        onPressed: () => {widget.signal.setNavSignal(0)},
-                        backgroundColor: Colors.white,
-                        child: const Text(
-                          "Back",
+                      Expanded(
+                        flex: 1,
+                        child: Container(
+                          margin: EdgeInsets.fromLTRB(5,10,0,0),
+                          height: 35,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              width: 2,
+                              color: Colors.black38,
+                            ),
+                            borderRadius: const BorderRadius.all(Radius.circular(30)),
+                          ),
+                          child: FloatingActionButton(
+                            onPressed: () => setState(() {
+                              widget.dto.email = widget.emailField.data;
+                              widget.dto.userName = widget.usernameField.data;
+                              widget.dto.firstName = widget.firstnameField.data;
+                              widget.dto.lastName = widget.lastnameField.data;
+                              widget.dto.password = widget.passwordField.data;
+                              widget.service.postArtist(widget.dto);
+                            },),
+                            backgroundColor: Colors.white,
+                            child: const Text(
+                              "Create",
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                
-                    Container(
-                      margin: EdgeInsets.fromLTRB(0,10,0,0),
-                      width: 140,
-                      height: 35,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          width: 2,
-                          color: Colors.black38,
-                        ),
-                        borderRadius: const BorderRadius.all(Radius.circular(30)),
-                      ),
-                      child: FloatingActionButton(
-                        onPressed: () => {
-                          widget.dto.email = widget.emailField.data,
-                          widget.dto.userName = widget.usernameField.data,
-                          widget.dto.firstName = widget.firstnameField.data,
-                          widget.dto.lastName = widget.lastnameField.data,
-                          widget.dto.password = widget.passwordField.data,
-                          widget.service.postArtist(widget.dto),
-                        }, 
-                        backgroundColor: Colors.white,
-                        child: const Text(
-                          "Create",
-                        ),
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
         )

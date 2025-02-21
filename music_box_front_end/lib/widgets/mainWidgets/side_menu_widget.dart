@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:music_box_front_end/data/navigating_signal.dart';
+import 'package:music_box_front_end/data/responsive_data.dart';
 import 'package:music_box_front_end/models/panel_model.dart';
 
 class SideMenuWidget extends StatefulWidget {
@@ -12,17 +13,23 @@ class SideMenuWidget extends StatefulWidget {
 }
 
 class _SideMenyWidgetState extends State<SideMenuWidget> {
-
+  
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
+    ResponsiveData responsiveData = ResponsiveData(context: context);
+    return responsiveData.isLessThan400()? GridView.builder(
         shrinkWrap: true,
         itemCount: 5,
-        itemBuilder: (context, index) => buildMenuEntry(index),
+        itemBuilder: (context, index) => buildMenuEntry(index, responsiveData), gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 5),
+      ):
+      ListView.builder(
+        shrinkWrap: true,
+        itemCount: 5,
+        itemBuilder: (context, index) => buildMenuEntry(index, responsiveData),
       );
   }
 
-  Widget buildMenuEntry(int index){
+  Widget buildMenuEntry(int index, ResponsiveData responsiveData){
     int selectedIndex = widget.navigatingSignal.getNavSignal;
     final isSelected = selectedIndex == index;
     return InkWell(
@@ -50,7 +57,7 @@ class _SideMenyWidgetState extends State<SideMenuWidget> {
               ),
             
               Text(
-                widget.menu[index].title,
+                responsiveData.isLessThan600()? "":widget.menu[index].title,
                 style: TextStyle(
                   fontWeight: FontWeight.normal,
                   fontSize: 16,
@@ -61,5 +68,5 @@ class _SideMenyWidgetState extends State<SideMenuWidget> {
           ),
         )
       );
-  }  
+  }
 }

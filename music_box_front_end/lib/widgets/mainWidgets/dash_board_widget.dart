@@ -29,14 +29,6 @@ class DashBoardWidget extends StatelessWidget{
               return menu[navigatingSignal.getNavSignal].widget;},
             ),
         ),
-
-        Visibility(
-          visible: false,
-          child: Expanded(
-            flex: 0,
-            child: Container()
-          ),
-        )
         ],
     );
   }

@@ -10,8 +10,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      scrollBehavior: MaterialScrollBehavior(),
+    return MaterialApp(
+      scrollBehavior: const MaterialScrollBehavior(),
       debugShowCheckedModeBanner: false,
       home: MyHomePage(),
     );

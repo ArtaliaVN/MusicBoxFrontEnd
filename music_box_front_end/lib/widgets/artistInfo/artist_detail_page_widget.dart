@@ -31,7 +31,7 @@ class ArtistDetailedPageState extends State<ArtistDetailedPageWidget>{
           child: ListView(
             children: [
               Container(
-               
+                
               ),
             ],
           ),

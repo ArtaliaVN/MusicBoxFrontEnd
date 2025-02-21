@@ -20,7 +20,7 @@ class SongHorizontalScrollParState extends State<SongHorizontalScrollPar> {
     super.initState();
     getData();
   }
-
+  
   getData() async{
     songs = await RemoteService().getSongDtoListAll();
   }

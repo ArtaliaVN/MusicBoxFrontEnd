@@ -38,31 +38,29 @@ class TextfieldState extends State<TextfieldWidget>{
   
   @override
   Widget build(BuildContext context) {
-    return Flexible(
-            child: TextField(
-              obscureText: widget.hideText,
-              controller: myController,
-              decoration: InputDecoration(
-                constraints: BoxConstraints(maxHeight: 35, maxWidth: widget.width),
-                filled: true,
-                fillColor: Color.fromARGB(255, 218, 217, 223),
-                enabledBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.transparent),
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12.0),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12.0),
-                  borderSide: BorderSide(color: Colors.black),
-                ),
-                contentPadding: const EdgeInsets.symmetric(
-                  vertical: 5,
-                  horizontal: 10,
-                ),
-                hintText: widget.text,
-              ),
-            ),
-          );
+    return TextField(
+      obscureText: widget.hideText,
+      controller: myController,
+      decoration: InputDecoration(
+        constraints: BoxConstraints(maxHeight: 35, maxWidth: widget.width,),
+        filled: true,
+        fillColor: Color.fromARGB(255, 218, 217, 223),
+        enabledBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.transparent),
+        ),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.0),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.0),
+          borderSide: BorderSide(color: Colors.black),
+        ),
+        contentPadding: const EdgeInsets.symmetric(
+          vertical: 5,
+          horizontal: 10,
+        ),
+        hintText: widget.text,
+      ),
+    );
   }
 }

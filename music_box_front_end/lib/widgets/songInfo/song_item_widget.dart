@@ -12,6 +12,17 @@ class SongItemWidget extends StatefulWidget{
   State<SongItemWidget> createState() => SongItemState(); 
 }
 class SongItemState extends State<SongItemWidget>{
+  late NetworkImage image;
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  getData() async {
+    image = NetworkImage("http://localhost:8080/song/image/id=${widget.song.id}/item");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,20 +39,30 @@ class SongItemState extends State<SongItemWidget>{
         children: [
           Expanded(
             flex: 1,
-            child: Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: NetworkImage("http://localhost:8080/song/image/id=${widget.song.id}/item"),
-                    fit: BoxFit.cover,
-                  ),
-                  border: Border.all(
-                    color: Colors.black12,
-                    style: BorderStyle.solid,
-                    strokeAlign: BorderSide.strokeAlignCenter,
-                  ),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                )
+            child: FutureBuilder(
+              future: getData(),
+              builder: (context, snapshot) {
+                if(snapshot.connectionState == ConnectionState.done){
+                  return Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: image,
+                        fit: BoxFit.cover,
+                      ),
+                      border: Border.all(
+                        color: Colors.black12,
+                        style: BorderStyle.solid,
+                        strokeAlign: BorderSide.strokeAlignCenter,
+                      ),
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                  );
+                }
+                else{
+                  return Center(child: CircularProgressIndicator());
+                }
+              }
+            )
               ),
 
               Expanded(
