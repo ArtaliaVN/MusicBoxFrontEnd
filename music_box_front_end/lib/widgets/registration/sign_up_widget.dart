@@ -1,6 +1,5 @@
 import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter/material.dart';
-import 'package:music_box_front_end/data/navigating_signal.dart';
 import 'package:music_box_front_end/models/artist_sending_dto.dart';
 import 'package:music_box_front_end/service/remote_service.dart';
 import 'package:music_box_front_end/widgets/registration/textfield_widget.dart';
@@ -14,9 +13,8 @@ class SignUpWidget extends StatefulWidget{
   final passwordConfirmField = TextfieldWidget(text: "Confirm password", width: 300, hideText: true);
   final dto = ArtistSendingDto();
   final service = RemoteService();
-  final NavigatingSignal signal;
 
-  SignUpWidget({super.key, required this.signal});
+  SignUpWidget({super.key});
 
   @override
   State<SignUpWidget> createState() => SignUpState();
@@ -198,8 +196,9 @@ class SignUpState extends State<SignUpWidget>{
                             borderRadius: const BorderRadius.all(Radius.circular(30)),
                           ),
                           child: FloatingActionButton(
-                            onPressed: () => setState(() {widget.signal.setNavSignal(4);}) ,
+                            onPressed: () => setState(() {Navigator.pop(context);}) ,
                             backgroundColor: Colors.white,
+                            heroTag: 'back',
                             child: const Text(
                               "Back",
                             ),
@@ -229,6 +228,7 @@ class SignUpState extends State<SignUpWidget>{
                               widget.service.postArtist(widget.dto);
                             },),
                             backgroundColor: Colors.white,
+                            heroTag: 'Create',
                             child: const Text(
                               "Create",
                             ),
@@ -242,7 +242,7 @@ class SignUpState extends State<SignUpWidget>{
             ),
           ),
         ),
-        )
-      );
+      )
+    );
   }
 }

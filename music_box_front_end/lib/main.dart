@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:music_box_front_end/my_home_page.dart';
+import 'package:music_box_front_end/widgets/pageWidgets/my_home_page.dart';
 
 main()  {
   runApp(const MyApp());

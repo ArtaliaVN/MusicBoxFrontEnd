@@ -17,11 +17,12 @@ class RemoteService {
         imageURL: eachArtist['imageURL'], 
         imageID: eachArtist['imageID'], 
       );
+      songToList(artist.songs, eachArtist['songs']);
       artists.add(artist);
     }
   }
 
-  songToList(List<SongDto> songs, var jsonData){
+  songToList(List<SongDto> songs,var jsonData){
     for(var eachSong in jsonData){
       final song = SongDto(
         id: eachSong['id'], 

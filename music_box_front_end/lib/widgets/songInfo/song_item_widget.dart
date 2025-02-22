@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:music_box_front_end/data/medium_data.dart';
-import 'package:music_box_front_end/data/navigating_signal.dart';
 import 'package:music_box_front_end/models/song_dto.dart';
+import 'package:music_box_front_end/widgets/pageWidgets/song_detail_page.dart';
+import 'package:music_box_front_end/widgets/songInfo/music_provider.dart';
 
 class SongItemWidget extends StatefulWidget{
-  final NavigatingSignal navigatingSignal;
   final SongDto song;
-  SongItemWidget({super.key, required this.song, required this.navigatingSignal});
+  SongItemWidget({super.key, required this.song});
 
   @override
   State<SongItemWidget> createState() => SongItemState(); 
@@ -26,15 +25,14 @@ class SongItemState extends State<SongItemWidget>{
 
   @override
   Widget build(BuildContext context) {
-    MediumData data = MediumData();
-    data.setSong(widget.song);
-    return InkWell(
+    return GestureDetector(
       onTap: () => setState((){
-              widget.navigatingSignal.setNavData(data);
-              widget.navigatingSignal.setNavSignal(5);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SongDetailPage(songDto: widget.song, musicProvider: MusicProvider())),
+              );
               },
             ),
-      borderRadius: BorderRadius.circular(15),
       child: Column(
         children: [
           Expanded(

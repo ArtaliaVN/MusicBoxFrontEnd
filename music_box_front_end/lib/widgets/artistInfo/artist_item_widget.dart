@@ -1,31 +1,38 @@
 import 'package:flutter/material.dart';
-import 'package:music_box_front_end/data/medium_data.dart';
-import 'package:music_box_front_end/data/navigating_signal.dart';
 import 'package:music_box_front_end/models/artist_dto.dart';
+import 'package:music_box_front_end/widgets/pageWidgets/artist_detail_page.dart';
 
 class ArtistItemWidget extends StatefulWidget{
   final int index;
   final ArtistDto artist;
-  final NavigatingSignal navigatingSignal;
-  ArtistItemWidget({super.key, required this.index, required this.artist, required this.navigatingSignal});
+  ArtistItemWidget({super.key, required this.index, required this.artist});
 
   @override
   State<ArtistItemWidget> createState() => ArtistItemWidgetState();
 }
 
 class ArtistItemWidgetState extends State<ArtistItemWidget>{
+  late NetworkImage artistItemImage;
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  getData() async {
+    artistItemImage = NetworkImage("http://localhost:8080/user/image/id=${widget.artist.id}/account");
+  }
 
   @override
   Widget build(BuildContext context){
-    MediumData data = MediumData();
-    data.setArtist(widget.artist);
-    return InkWell(
+    return GestureDetector(
       onTap: () => setState((){
-              widget.navigatingSignal.setNavData(data);
-              widget.navigatingSignal.setNavSignal(6);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ArtistDetailPage(artistDto: widget.artist,)),
+              );
               },
             ),
-      borderRadius: BorderRadius.circular(15),
       child: Column(
         children: [
           Expanded(
@@ -33,7 +40,7 @@ class ArtistItemWidgetState extends State<ArtistItemWidget>{
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   image: DecorationImage(
-                    image: NetworkImage("http://localhost:8080/user/image/id=${widget.artist.id}/account"),
+                    image: artistItemImage,
                     fit: BoxFit.cover,
                   ),
                   border: Border.all(

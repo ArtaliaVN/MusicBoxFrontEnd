@@ -1,14 +1,14 @@
 import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter/material.dart';
-import 'package:music_box_front_end/data/navigating_signal.dart';
 import 'package:music_box_front_end/data/responsive_data.dart';
+import 'package:music_box_front_end/widgets/pageWidgets/password_forgotten_page.dart';
+import 'package:music_box_front_end/widgets/pageWidgets/sign_up_page.dart';
 import 'package:music_box_front_end/widgets/registration/textfield_widget.dart';
 
 class SignInWidget extends StatefulWidget{
   final TextfieldWidget identityField = TextfieldWidget(text: "Email or username", width: 300, hideText: false);
   final TextfieldWidget passwordField = TextfieldWidget(text: "Password", width: 300, hideText: true);
-  final NavigatingSignal signal;
-  SignInWidget({super.key, required this.signal});
+  SignInWidget({super.key});
 
   @override
   State<SignInWidget> createState() => SignInState();
@@ -84,6 +84,7 @@ class SignInState extends State<SignInWidget>{
                       print("Identity is ${widget.identityField.data} and password is ${widget.passwordField.data}");
                       },),
                     backgroundColor: Colors.white,
+                    heroTag: 'Log1',
                     child: const Text(
                       "Log in",
                     ),
@@ -91,7 +92,12 @@ class SignInState extends State<SignInWidget>{
                 ),
                         
                 TextButton(
-                  onPressed: () => setState((){widget.signal.setNavSignal(8);}), 
+                  onPressed: () => setState((){
+                    Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => PasswordForgottenPage()),
+                        );
+                  }), 
                   child: Text(
                     "Forgot your password?",
                     style: TextStyle(color: Colors.white),
@@ -110,7 +116,12 @@ class SignInState extends State<SignInWidget>{
                     ),
             
                     TextButton(
-                      onPressed: () => setState((){widget.signal.setNavSignal(7);}) , 
+                      onPressed: () => setState((){
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => SignUpPage()),
+                        );
+                      }) , 
                       child: Text(
                         "Sign up",
                         style: TextStyle(color: Colors.white),
@@ -131,7 +142,12 @@ class SignInState extends State<SignInWidget>{
                     ),
             
                     TextButton(
-                      onPressed: () => setState(() {widget.signal.setNavSignal(7);}), 
+                      onPressed: () => setState(() {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => SignUpPage()),
+                        );
+                      }), 
                       child: Text(
                         "Sign up",
                         style: TextStyle(color: Colors.white),

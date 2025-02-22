@@ -1,19 +1,16 @@
 import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter/material.dart';
-import 'package:music_box_front_end/data/navigating_signal.dart';
 import 'package:music_box_front_end/widgets/registration/textfield_widget.dart';
 
 class PasswordForgottenVerificationWidget extends StatefulWidget{
   final TextfieldWidget emailField = TextfieldWidget(text: "Email",width: 300, hideText: false);
-  final NavigatingSignal signal;
-  PasswordForgottenVerificationWidget({super.key, required this.signal});
+  PasswordForgottenVerificationWidget({super.key});
   
   @override
   State<PasswordForgottenVerificationWidget> createState() => VerificationState();
 }
 
 class VerificationState extends State<PasswordForgottenVerificationWidget>{
-  
   String email = "";
   @override
   Widget build(BuildContext context) {
@@ -73,8 +70,11 @@ class VerificationState extends State<PasswordForgottenVerificationWidget>{
                             borderRadius: const BorderRadius.all(Radius.circular(30)),
                           ),
                           child: FloatingActionButton(
-                            onPressed: () => {widget.signal.setNavSignal(4)},
+                            onPressed: () => setState(() {
+                              Navigator.pop(context);
+                            }),
                             backgroundColor: Colors.white,
+                            heroTag: 'Back',
                             child: const Text(
                               "Back",
                             ),
@@ -96,6 +96,7 @@ class VerificationState extends State<PasswordForgottenVerificationWidget>{
                           child: FloatingActionButton(
                             onPressed: null,
                             backgroundColor: Colors.white,
+                            heroTag: 'Send',
                             child: const Text(
                               "Send",
                             ),

@@ -17,8 +17,6 @@ class TextfieldState extends State<TextfieldWidget>{
   @override
   void initState() {
     super.initState();
-
-    // Start listening to changes.
     myController.addListener(getData);
   }
 

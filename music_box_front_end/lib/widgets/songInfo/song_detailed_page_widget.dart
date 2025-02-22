@@ -1,6 +1,5 @@
 import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter/material.dart';
-import 'package:music_box_front_end/data/navigating_signal.dart';
 import 'package:music_box_front_end/data/responsive_data.dart';
 import 'package:music_box_front_end/models/song_dto.dart';
 import 'package:music_box_front_end/widgets/songInfo/music_provider.dart';
@@ -8,12 +7,11 @@ import 'package:music_box_front_end/widgets/songInfo/song_audio_player_widget.da
 
 class SongDetailedPageWidget extends StatefulWidget{
   final MusicProvider musicProvider;
-  final NavigatingSignal navigatingSignal;
-  SongDetailedPageWidget({super.key, required this.navigatingSignal, required this.musicProvider});
+  final SongDto songDto;
+  SongDetailedPageWidget({super.key, required this.songDto, required this.musicProvider});
 
   @override
   State<SongDetailedPageWidget> createState() => SongDetailedPageState();
-
 }
 
 class SongDetailedPageState extends State<SongDetailedPageWidget>{
@@ -26,8 +24,8 @@ class SongDetailedPageState extends State<SongDetailedPageWidget>{
   }
 
   getData() async {
-    image =  NetworkImage("http://localhost:8080/song/image/id=${widget.navigatingSignal.data.song.id}/item");
-    widget.musicProvider.play("http://localhost:8080/song/audio/id=${widget.navigatingSignal.data.song.id}/item");
+    image =  NetworkImage("http://localhost:8080/song/image/id=${widget.songDto.id}/item");
+    widget.musicProvider.play("http://localhost:8080/song/audio/id=${widget.songDto.id}/item");
     audioPlayerWidget = SongAudioPlayerWidget(musicProvider: widget.musicProvider);
   }
 
@@ -39,9 +37,7 @@ class SongDetailedPageState extends State<SongDetailedPageWidget>{
 
   @override
   Widget build(BuildContext context){
-    final SongDto song = widget.navigatingSignal.getData.song; 
     final ResponsiveData responsiveData = ResponsiveData(context: context);
-    
     return Container(
       decoration: BoxDecoration(
         border: Border.all(
@@ -90,7 +86,7 @@ class SongDetailedPageState extends State<SongDetailedPageWidget>{
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      song.songName,
+                                      widget.songDto.songName,
                                       maxLines: 3,
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(
@@ -100,7 +96,7 @@ class SongDetailedPageState extends State<SongDetailedPageWidget>{
                                     ),
                               
                                     Text(
-                                      "Artist: ${song.artistName}",
+                                      "Artist: ${widget.songDto.artistName}",
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(
@@ -136,7 +132,7 @@ class SongDetailedPageState extends State<SongDetailedPageWidget>{
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      song.songName,
+                                      widget.songDto.songName,
                                       maxLines: 3,
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(
@@ -146,7 +142,7 @@ class SongDetailedPageState extends State<SongDetailedPageWidget>{
                                     ),
                               
                                     Text(
-                                      "Artist: ${song.artistName}",
+                                      "Artist: ${widget.songDto.artistName}",
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(

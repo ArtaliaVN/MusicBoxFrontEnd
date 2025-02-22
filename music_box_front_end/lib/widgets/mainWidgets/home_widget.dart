@@ -1,15 +1,18 @@
 import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter/material.dart';
-import 'package:music_box_front_end/data/navigating_signal.dart';
 import 'package:music_box_front_end/widgets/artistInfo/artist_horizontal_scroll_par.dart';
 import 'package:music_box_front_end/widgets/songInfo/song_horizontal_scroll_par.dart';
 
-class HomeWidget extends StatelessWidget{
-  final NavigatingSignal navigatingSignal;
-  const HomeWidget({super.key, required this.navigatingSignal});
-  
+class HomeWidget extends StatefulWidget{
+  const HomeWidget({super.key});
+
   @override
-  Widget build(Object context) {
+  State<HomeWidget> createState() => HomeState();
+}
+
+class HomeState extends State<HomeWidget>{
+  @override
+  Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         border: Border.all(
@@ -52,7 +55,7 @@ class HomeWidget extends StatelessWidget{
                   ],
                 ),
               ),
-              ArtistHorizontalScrollpar(navigatingSignal: navigatingSignal),
+              ArtistHorizontalScrollpar(),
               Container(
                 //margin: EdgeInsets.all(10),
                 padding: EdgeInsets.all(10),
@@ -77,7 +80,7 @@ class HomeWidget extends StatelessWidget{
                   ],
                 ),
               ),
-              SongHorizontalScrollPar(navigatingSignal: navigatingSignal,),
+              SongHorizontalScrollPar(),
             ],
           ),
         )
