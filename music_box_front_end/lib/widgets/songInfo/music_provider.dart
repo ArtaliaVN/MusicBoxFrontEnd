@@ -1,8 +1,12 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:music_box_front_end/models/song_dto.dart';
 
 class MusicProvider extends ChangeNotifier{
   final AudioPlayer audioPlayer = AudioPlayer();
+
+  SongDto? currentSong;
+  SongDto get getCurrentSong => currentSong!;
   
   Duration currentDuration = Duration.zero;
   Duration get getCurrentDuration => currentDuration;
@@ -35,11 +39,14 @@ class MusicProvider extends ChangeNotifier{
     audioPlayer.onPlayerComplete.listen((event) {});
   }
 
-  void play(String songURL) async {
-    await audioPlayer.stop();
-    await audioPlayer.play(UrlSource(songURL));
-    isPlaying = true;
-    notifyListeners();
+  void play(SongDto song) async {
+    if(song != currentSong || currentSong == null){
+      currentSong = song;
+      await audioPlayer.stop();
+      await audioPlayer.play(UrlSource("http://localhost:8080/song/audio/id=${currentSong?.id}/item"));
+      isPlaying = true;
+      notifyListeners();
+    }
   }
 
   void resume() async {

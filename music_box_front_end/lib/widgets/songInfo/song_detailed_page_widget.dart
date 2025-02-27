@@ -4,39 +4,31 @@ import 'package:music_box_front_end/data/responsive_data.dart';
 import 'package:music_box_front_end/models/song_dto.dart';
 import 'package:music_box_front_end/widgets/songInfo/music_provider.dart';
 import 'package:music_box_front_end/widgets/songInfo/song_audio_player_widget.dart';
+import 'package:provider/provider.dart';
 
 class SongDetailedPageWidget extends StatefulWidget{
-  final MusicProvider musicProvider;
   final SongDto songDto;
-  SongDetailedPageWidget({super.key, required this.songDto, required this.musicProvider});
+  SongDetailedPageWidget({super.key, required this.songDto});
 
   @override
   State<SongDetailedPageWidget> createState() => SongDetailedPageState();
 }
 
 class SongDetailedPageState extends State<SongDetailedPageWidget>{
-  late final NetworkImage image;
-  late final SongAudioPlayerWidget audioPlayerWidget;
   @override
   void initState()  {
     super.initState();
-    getData();
+    getData(); 
   }
 
-  getData() async {
-    image =  NetworkImage("http://localhost:8080/song/image/id=${widget.songDto.id}/item");
-    widget.musicProvider.play("http://localhost:8080/song/audio/id=${widget.songDto.id}/item");
-    audioPlayerWidget = SongAudioPlayerWidget(musicProvider: widget.musicProvider);
-  }
-
-  @override
-  void dispose() {
-    widget.musicProvider.audioPlayer.stop();
-    super.dispose();
+  Future<ImageProvider?> getData() async {
+    var image =  NetworkImage("http://localhost:8080/song/image/id=${widget.songDto.id}/item");
+    return image;
   }
 
   @override
   Widget build(BuildContext context){
+    context.read<MusicProvider>().play(widget.songDto);
     final ResponsiveData responsiveData = ResponsiveData(context: context);
     return Container(
       decoration: BoxDecoration(
@@ -70,7 +62,7 @@ class SongDetailedPageState extends State<SongDetailedPageWidget>{
                             Container(
                               decoration: BoxDecoration(
                                 image: DecorationImage(
-                                  image: image, 
+                                  image: snapshot.data!, 
                                   fit: BoxFit.cover
                                 ),
                               ),
@@ -116,7 +108,7 @@ class SongDetailedPageState extends State<SongDetailedPageWidget>{
                             Container(
                               decoration: BoxDecoration(
                                 image: DecorationImage(
-                                  image: image, 
+                                  image: snapshot.data!, 
                                   fit: BoxFit.cover
                                 ),
                               ),
@@ -162,7 +154,7 @@ class SongDetailedPageState extends State<SongDetailedPageWidget>{
                   
                   Expanded(
                     flex: 0,
-                    child: audioPlayerWidget
+                    child: SongAudioPlayerWidget(),
                   ),
                 ]
               ),

@@ -13,13 +13,7 @@ class MyHomePage extends StatelessWidget {
     final SideMenuWidget sideMenuWidget = SideMenuWidget();
     
     return Scaffold(
-      floatingActionButton:Navigator.canPop(context)? FloatingActionButton(
-        hoverElevation: 0.5,
-        onPressed: (){ 
-        Navigator.pop(context);
-        },
-        child: Icon(Icons.arrow_back),
-      ):null,
+
       body: Container(
         padding: EdgeInsets.all(10),
         decoration: const BoxDecoration(

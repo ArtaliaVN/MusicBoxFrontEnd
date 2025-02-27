@@ -11,7 +11,6 @@ class ArtistHorizontalScrollpar extends StatefulWidget{
 }
 
 class ArtistHorizontalScrollparState extends State<ArtistHorizontalScrollpar> {
-  List<ArtistDto> artists = [];
 
   @override
   void initState() {
@@ -19,8 +18,9 @@ class ArtistHorizontalScrollparState extends State<ArtistHorizontalScrollpar> {
     getData();
   }
 
-  getData() async{
-    artists = await RemoteService().getArtistDtoListAll();
+  Future<List<ArtistDto>?> getData() async{
+    List<ArtistDto> artists = await RemoteService().getArtistDtoListAll();
+    return artists;
   }
 
   @override
@@ -33,14 +33,14 @@ class ArtistHorizontalScrollparState extends State<ArtistHorizontalScrollpar> {
         child: FutureBuilder(
           future: getData(), 
           builder: (context, snapshot) {
-            if(snapshot.connectionState == ConnectionState.done){
+            if(snapshot.hasData){
               return GridView.builder(
                 gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(mainAxisExtent: 250,maxCrossAxisExtent: 250, crossAxisSpacing: 10, mainAxisSpacing: 10, childAspectRatio: 1.0), 
                 scrollDirection: Axis.vertical,
                 physics: NeverScrollableScrollPhysics(),
-                itemCount: artists.length,
+                itemCount: snapshot.data!.length,
                 itemBuilder: (context, index) {
-                  return GridTile(child: ArtistItemWidget(index: index, artist: artists[index]));
+                  return GridTile(child: ArtistItemWidget(index: index, artist: snapshot.data![index]));
                 },
               );
             }

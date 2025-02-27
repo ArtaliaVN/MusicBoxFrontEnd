@@ -4,6 +4,7 @@ import 'package:music_box_front_end/data/navigating_signal.dart';
 import 'package:music_box_front_end/models/song_dto.dart';
 import 'package:music_box_front_end/service/remote_service.dart';
 import 'package:music_box_front_end/widgets/searchPar/songs_extended_list_view_widget.dart';
+import 'package:music_box_front_end/widgets/songInfo/song_audio_player_widget.dart';
 
 class SearchPageWidget extends StatefulWidget{
   const SearchPageWidget({super.key});
@@ -15,7 +16,6 @@ class SearchPageWidget extends StatefulWidget{
 class SearchState extends State<SearchPageWidget>{
   final NavigatingSignal navigationSignal = NavigatingSignal();
   int selectedIndex = 0;
-  List<SongDto> songs = [];
 
   @override
   void initState() {
@@ -23,8 +23,9 @@ class SearchState extends State<SearchPageWidget>{
     getData();
   }
 
-  getData() async{
-    songs = await RemoteService().getSongDtoListAll();
+  Future<List<SongDto>?> getData() async{
+    List<SongDto> songs = await RemoteService().getSongDtoListAll();
+    return songs;
   }
 
   @override
@@ -44,17 +45,31 @@ class SearchState extends State<SearchPageWidget>{
             color: Colors.black38,
             borderRadius: BorderRadiusDirectional.circular(8),
           ),
-          padding: EdgeInsets.all(10),
           child: FutureBuilder(
             future: getData(),
             builder: (context, snapshot){
               if(snapshot.connectionState == ConnectionState.done){
-                return ListenableBuilder(
-                    listenable: navigationSignal,
-                    builder: (BuildContext context, Widget? child) {
-                      return SongsExtendedListViewWidget(songs: songs);
-                    },
-                  );
+                return Column(
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: ListenableBuilder(
+                            listenable: navigationSignal,
+                            builder: (BuildContext context, Widget? child) {
+                              return SongsExtendedListViewWidget(songs: snapshot.data!);
+                            },
+                          ),
+                      ),
+                    ),
+
+                    Expanded(
+                      flex: 0,
+                      child: SongAudioPlayerWidget(),
+                    )
+                  ],
+                );
                 }
               else{
                 return Center(child: CircularProgressIndicator());

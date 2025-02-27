@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:music_box_front_end/widgets/pageWidgets/my_home_page.dart';
+import 'package:music_box_front_end/widgets/songInfo/music_provider.dart';
+import 'package:provider/provider.dart';
 
 main()  {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => MusicProvider(),
+      child: MyApp(),
+    )
+  );
 }
 
 class MyApp extends StatelessWidget {

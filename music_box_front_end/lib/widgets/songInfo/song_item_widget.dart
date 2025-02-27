@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:music_box_front_end/models/song_dto.dart';
 import 'package:music_box_front_end/widgets/pageWidgets/song_detail_page.dart';
-import 'package:music_box_front_end/widgets/songInfo/music_provider.dart';
 
 class SongItemWidget extends StatefulWidget{
   final SongDto song;
@@ -11,7 +10,6 @@ class SongItemWidget extends StatefulWidget{
   State<SongItemWidget> createState() => SongItemState(); 
 }
 class SongItemState extends State<SongItemWidget>{
-  late NetworkImage image;
 
   @override
   void initState() {
@@ -19,8 +17,9 @@ class SongItemState extends State<SongItemWidget>{
     getData();
   }
 
-  getData() async {
-    image = NetworkImage("http://localhost:8080/song/image/id=${widget.song.id}/item");
+  Future<ImageProvider?> getData() async {
+    var image = NetworkImage("http://localhost:8080/song/image/id=${widget.song.id}/item");
+    return image;
   }
 
   @override
@@ -29,7 +28,7 @@ class SongItemState extends State<SongItemWidget>{
       onTap: () => setState((){
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => SongDetailPage(songDto: widget.song, musicProvider: MusicProvider())),
+                MaterialPageRoute(builder: (context) => SongDetailPage(songDto: widget.song)),
               );
               },
             ),
@@ -40,11 +39,11 @@ class SongItemState extends State<SongItemWidget>{
             child: FutureBuilder(
               future: getData(),
               builder: (context, snapshot) {
-                if(snapshot.connectionState == ConnectionState.done){
+                if(snapshot.hasData){
                   return Container(
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: image,
+                        image: snapshot.data!,
                         fit: BoxFit.cover,
                       ),
                       border: Border.all(

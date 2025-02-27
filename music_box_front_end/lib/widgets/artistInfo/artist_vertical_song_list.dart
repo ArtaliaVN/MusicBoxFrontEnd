@@ -14,8 +14,7 @@ class ArtistVerticalSongListState extends State<ArtistVerticalSongList>{
   @override
   build (BuildContext context) {
     return SizedBox(
-      height: 300,
-      width: 200,
+      height: widget.songList.length*70,
       child: ListView.builder(
         itemCount:widget.songList.length,
         itemBuilder: (BuildContext context, int index) 

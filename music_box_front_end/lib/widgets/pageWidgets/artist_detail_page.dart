@@ -19,12 +19,6 @@ class ArtistDetailState extends State<ArtistDetailPage>{
     final ResponsiveData responsiveData = ResponsiveData(context: context);
     final SideMenuWidget sideMenuWidget = SideMenuWidget();
     return Scaffold(
-      floatingActionButton:Navigator.canPop(context)? FloatingActionButton(
-        onPressed: (){ 
-        Navigator.pop(context);
-        },
-        child: Icon(Icons.arrow_back),
-      ):null,
       body: Container(
         padding: EdgeInsets.all(10),
         decoration: const BoxDecoration(

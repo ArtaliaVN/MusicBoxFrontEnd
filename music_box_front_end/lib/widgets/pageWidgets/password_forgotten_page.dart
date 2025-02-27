@@ -16,12 +16,6 @@ class PasswordForgottenWidget extends State<PasswordForgottenPage>{
     final ResponsiveData responsiveData = ResponsiveData(context: context);
     final SideMenuWidget sideMenuWidget = SideMenuWidget();
     return Scaffold(
-      floatingActionButton:Navigator.canPop(context)? FloatingActionButton(
-        onPressed: (){ 
-        Navigator.pop(context);
-        },
-        child: Icon(Icons.arrow_back),
-      ):null,
       body: Container(
         padding: EdgeInsets.all(10),
         decoration: const BoxDecoration(
@@ -34,22 +28,13 @@ class PasswordForgottenWidget extends State<PasswordForgottenPage>{
         Column(
           children: [
             Expanded(
+              flex: 0,
+              child: HeaderWidget()
+            ),
+
+            Expanded(
               flex: 1,
-              child: Column(
-                children: [
-                  Expanded(
-                  flex: 0,
-                  child: SizedBox(
-                    child: HeaderWidget(),
-                    ),
-                  ),
-                  
-                  Expanded(
-                    flex: 1,
-                    child: PasswordForgottenVerificationWidget(),
-                  ),
-                ],
-              ),
+              child: PasswordForgottenVerificationWidget(),
             ),
             //Left tools par
             Expanded(
@@ -80,21 +65,7 @@ class PasswordForgottenWidget extends State<PasswordForgottenPage>{
             ),
             Expanded(
               flex: 1,
-              child: Column(
-                children: [
-                  Expanded(
-                  flex: 0,
-                  child: SizedBox(
-                    child: HeaderWidget(),
-                    ),
-                  ),
-                  
-                  Expanded(
-                    flex: 1,
-                    child: PasswordForgottenVerificationWidget(),
-                  ),
-                ],
-              ),
+              child: PasswordForgottenVerificationWidget(),
             ),
           ],
         )

@@ -11,7 +11,6 @@ class SongHorizontalScrollPar extends StatefulWidget{
 }
 
 class SongHorizontalScrollParState extends State<SongHorizontalScrollPar> {
-  List<SongDto> songs = [];
 
   @override
   void initState() {
@@ -19,8 +18,9 @@ class SongHorizontalScrollParState extends State<SongHorizontalScrollPar> {
     getData();
   }
   
-  getData() async{
-    songs = await RemoteService().getSongDtoListAll();
+  Future<List<SongDto>?> getData() async{
+    List<SongDto> songs = await RemoteService().getSongDtoListAll();
+    return songs;
   }
 
   @override
@@ -33,14 +33,14 @@ class SongHorizontalScrollParState extends State<SongHorizontalScrollPar> {
         child: FutureBuilder(
           future: getData(), 
           builder: (context, snapshot) {
-            if(snapshot.connectionState == ConnectionState.done){
+            if(snapshot.hasData){
               return GridView.builder(
-                gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(mainAxisExtent: 290,maxCrossAxisExtent: 250, crossAxisSpacing: 10, mainAxisSpacing: 10, childAspectRatio: 1.0), 
+                gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(mainAxisExtent: 250,maxCrossAxisExtent: 200, crossAxisSpacing: 10, mainAxisSpacing: 10, childAspectRatio: 1.0), 
                 scrollDirection: Axis.vertical,
                 physics: NeverScrollableScrollPhysics(),
-                itemCount: songs.length,
+                itemCount: snapshot.data!.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return GridTile(child: SongItemWidget(song: songs[index]));
+                  return GridTile(child: SongItemWidget(song: snapshot.data![index]));
                 },
               );
             }

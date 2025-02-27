@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:music_box_front_end/data/responsive_data.dart';
 import 'package:music_box_front_end/widgets/mainWidgets/side_menu_widget.dart';
 import 'package:music_box_front_end/widgets/registration/sign_up_widget.dart';
+import 'package:music_box_front_end/widgets/searchPar/header_widget.dart';
 
 class SignUpPage extends StatefulWidget{
   const SignUpPage({super.key});
@@ -16,12 +17,6 @@ class SignUpState extends State<SignUpPage>{
     final ResponsiveData responsiveData = ResponsiveData(context: context);
     final SideMenuWidget sideMenuWidget = SideMenuWidget();
     return Scaffold(
-      floatingActionButton:Navigator.canPop(context)? FloatingActionButton(
-        onPressed: (){ 
-        Navigator.pop(context);
-        },
-        child: Icon(Icons.arrow_back),
-      ):null,
       body: Container(
         padding: EdgeInsets.all(10),
         decoration: const BoxDecoration(
@@ -37,6 +32,11 @@ class SignUpState extends State<SignUpPage>{
               flex: 1,
               child: Column(
                 children: [
+                  Expanded(
+                    flex: 0,
+                    child: HeaderWidget()
+                  ),
+
                   Expanded(
                     flex: 1,
                     child: SignUpWidget(),

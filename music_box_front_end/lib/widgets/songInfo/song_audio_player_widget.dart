@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:music_box_front_end/data/responsive_data.dart';
 import 'package:music_box_front_end/widgets/songInfo/music_provider.dart';
+import 'package:provider/provider.dart';
 
 class SongAudioPlayerWidget extends StatefulWidget{
-  final MusicProvider musicProvider;
-  const SongAudioPlayerWidget({super.key, required this.musicProvider});
+  const SongAudioPlayerWidget({super.key});
 
   @override
   State<SongAudioPlayerWidget> createState() => SongAudioPlayerState(); 
@@ -14,90 +14,93 @@ class SongAudioPlayerState extends State<SongAudioPlayerWidget>{
   @override
   Widget build(BuildContext context) {
     final ResponsiveData responsiveData = ResponsiveData(context: context);
-    return SizedBox(
-      height: 100,
-      child: Column(
-        children: [
-          Container(
-            padding: const EdgeInsets.fromLTRB(20,0,20,0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                //timer
-                ListenableBuilder(
-                  listenable: widget.musicProvider,
-                  builder:(BuildContext context, Widget? child) {
-                    return Text(
-                    formatTime(widget.musicProvider.currentDuration),
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  );}
-                ),
-
-                Container(
-                  constraints: BoxConstraints(
-                    minWidth: 50,
-                    maxWidth: responsiveData.isLessThan600()?  100:200,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Icon(
-                        Icons.shuffle,
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(0,10,0,0),
+      child: SizedBox(
+        height: 100,
+        child: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.fromLTRB(20,0,20,0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  //timer
+                  ListenableBuilder(
+                    listenable: context.watch<MusicProvider>(),
+                    builder:(BuildContext context, Widget? child) {
+                      return Text(
+                      "${formatTime(context.watch<MusicProvider>().currentDuration)} ${context.watch<MusicProvider>().currentSong?.songName}",
+                      style: TextStyle(
                         color: Colors.white,
                       ),
-
-                      GestureDetector(
-                        onTap: widget.musicProvider.pauseOrResume,
-                        child: ListenableBuilder(
-                          listenable: widget.musicProvider,
-                          builder: (BuildContext context, Widget? child) {
-                            return Icon(
-                            widget.musicProvider.getIsPlaying? Icons.pause_circle : Icons.play_circle,
-                            color: Colors.white,
-                          );},
+                    );}
+                  ),
+      
+                  Container(
+                    constraints: BoxConstraints(
+                      minWidth: 50,
+                      maxWidth: responsiveData.isLessThan600()?  100:200,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Icon(
+                          Icons.shuffle,
+                          color: Colors.white,
                         ),
-                      ),
-
-                      Icon(
-                        Icons.repeat,
+      
+                        GestureDetector(
+                          onTap: context.watch<MusicProvider>().pauseOrResume,
+                          child: ListenableBuilder(
+                            listenable: context.watch<MusicProvider>(),
+                            builder: (BuildContext context, Widget? child) {
+                              return Icon(
+                              (context.watch<MusicProvider>().isPlaying)? Icons.pause_circle : Icons.play_circle,
+                              color: Colors.white,
+                            );},
+                          ),
+                        ),
+      
+                        Icon(
+                          Icons.repeat,
+                          color: Colors.white,
+                        ),
+                      ],
+                    ),
+                  ),
+      
+                  ListenableBuilder(
+                    listenable: context.watch<MusicProvider>(),
+                    builder:(BuildContext context, Widget? child) {
+                      return Text(
+                      formatTime(context.watch<MusicProvider>().totalDuration),
+                      style: TextStyle(
                         color: Colors.white,
                       ),
-                    ],
+                    );}
                   ),
-                ),
-
-                ListenableBuilder(
-                  listenable: widget.musicProvider,
-                  builder:(BuildContext context, Widget? child) {
-                    return Text(
-                    formatTime(widget.musicProvider.totalDuration),
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  );}
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-
-          ListenableBuilder(
-            listenable: widget.musicProvider,
-            builder:(BuildContext context, Widget? child) {
-              return Slider(
-              min: 0,
-              max: widget.musicProvider.totalDuration.inMilliseconds.toDouble(),
-              value: widget.musicProvider.currentDuration.inMilliseconds.toDouble(), 
-              activeColor: Colors.green,
-              onChanged: (double double) {},
-
-              onChangeEnd: (double double)  async {
-                widget.musicProvider.seek(Duration(milliseconds: double.toInt()));
-              },
-            );}
-          ),
-        ],
+      
+            ListenableBuilder(
+              listenable: context.watch<MusicProvider>(),
+              builder:(BuildContext context, Widget? child) {
+                return Slider(
+                min: 0,
+                max: context.watch<MusicProvider>().totalDuration.inMilliseconds.toDouble(),
+                value: context.watch<MusicProvider>().currentDuration.inMilliseconds.toDouble(), 
+                activeColor: Colors.green,
+                onChanged: (double double) {},
+      
+                onChangeEnd: (double double)  async {
+                  context.read<MusicProvider>().seek(Duration(milliseconds: double.toInt()));
+                },
+              );}
+            ),
+          ],
+        ),
       ),
     );
   }
