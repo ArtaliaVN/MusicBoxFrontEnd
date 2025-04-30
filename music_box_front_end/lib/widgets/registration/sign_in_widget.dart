@@ -37,126 +37,97 @@ class SignInState extends State<SignInWidget>{
             color: Colors.black38,
             borderRadius: BorderRadiusDirectional.circular(8),
           ),
-          child: SizedBox(
-            width: 300,
-            height: 300,
-            child: ListView(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0,10,0,8),
-                  child: SizedBox(
-                    width: 300,
-                    child: Text(
-                      "Enter email or username",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ),
-            
-                widget.identityField,
-            
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0,10,0,8),
-                  child: SizedBox(
-                    width: 300,
-                    child: Text(
-                      "Password",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ),
-            
-                widget.passwordField,
-            
-                Container(
-                  margin: EdgeInsets.fromLTRB(0,10,0,0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0,10,0,8),
+                child: SizedBox(
                   width: 300,
-                  height: 35,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      width: 2,
-                      color: Colors.black38,
-                    ),
-                    borderRadius: const BorderRadius.all(Radius.circular(30)),
-                  ),
-                  child: FloatingActionButton(
-                    onPressed: () => setState((){
-                      print("Identity is ${widget.identityField.data} and password is ${widget.passwordField.data}");
-                      },),
-                    backgroundColor: Colors.white,
-                    heroTag: 'Log1',
-                    child: const Text(
-                      "Log in",
-                    ),
-                  ),
+                  // child: Text(
+                  //   "Enter email or username",
+                  //   style: TextStyle(color: Colors.white),
+                  // ),
                 ),
-                        
-                TextButton(
+              ),
+
+              widget.identityField,
+
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0,10,0,8),
+                child: SizedBox(
+                  width: 300,
+                  // child: Text(
+                  //   "Password",
+                  //   style: TextStyle(color: Colors.white),
+                  // ),
+                ),
+              ),
+
+              widget.passwordField,
+
+              Container(
+                margin: EdgeInsets.fromLTRB(0,10,0,0),
+                width: 300,
+                height: 35,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    width: 2,
+                    color: Colors.black38,
+                  ),
+                  borderRadius: const BorderRadius.all(Radius.circular(30)),
+                ),
+                child: FloatingActionButton(
                   onPressed: () => setState((){
-                    Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => PasswordForgottenPage()),
-                        );
-                  }), 
-                  child: Text(
-                    "Forgot your password?",
-                    style: TextStyle(color: Colors.white),
-                    )
+                    print("Identity is ${widget.identityField.data} and password is ${widget.passwordField.data}");
+                    },),
+                  backgroundColor: Colors.white,
+                  heroTag: 'Log1',
+                  child: const Text(
+                    "Log in",
+                  ),
                 ),
-            
-                responsiveData.isLessThan400()? Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        "Don't have an account? ",
-                        style: TextStyle(color: Colors.white),
-                        ),
-                    ),
-            
-                    TextButton(
-                      onPressed: () => setState((){
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => SignUpPage()),
-                        );
-                      }) , 
-                      child: Text(
-                        "Sign up",
-                        style: TextStyle(color: Colors.white),
-                      )
-                    ),
-                  ],
-                )
-                :
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        "Don't have an account? ",
-                        style: TextStyle(color: Colors.white),
-                        ),
-                    ),
-            
-                    TextButton(
-                      onPressed: () => setState(() {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => SignUpPage()),
-                        );
-                      }), 
-                      child: Text(
-                        "Sign up",
-                        style: TextStyle(color: Colors.white),
-                      )
-                    ),
-                  ],
-                )
-              ],
-            ),
+              ),
+
+              TextButton(
+                onPressed: () => setState((){
+                  Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => PasswordForgottenPage()),
+                      );
+                }),
+                child: Text(
+                  "Forgot your password?",
+                  style: TextStyle(color: Colors.white),
+                  )
+              ),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Text(
+                      "Don't have an account? ",
+                      style: TextStyle(color: Colors.white),
+                      ),
+                  ),
+
+                  TextButton(
+                    onPressed: () => setState((){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SignUpPage()),
+                      );
+                    }) ,
+                    child: Text(
+                      "Sign up",
+                      style: TextStyle(color: Colors.white),
+                    )
+                  ),
+                ],
+              )
+            ],
           ),
         ),
       ),

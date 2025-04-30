@@ -19,7 +19,7 @@ class SearchResultState extends State<SearchPage>{
     final SideMenuWidget sideMenuWidget = SideMenuWidget();
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.all(10),
+        padding: EdgeInsets.fromLTRB(10, 30, 10, 10),
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/images/background1.jpg"),

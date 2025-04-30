@@ -17,7 +17,7 @@ class PasswordForgottenWidget extends State<PasswordForgottenPage>{
     final SideMenuWidget sideMenuWidget = SideMenuWidget();
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.all(10),
+        padding: EdgeInsets.fromLTRB(10, 30, 10, 10),
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/images/background1.jpg"),
@@ -27,11 +27,6 @@ class PasswordForgottenWidget extends State<PasswordForgottenPage>{
         child: responsiveData.isLessThan400()? 
         Column(
           children: [
-            Expanded(
-              flex: 0,
-              child: HeaderWidget()
-            ),
-
             Expanded(
               flex: 1,
               child: PasswordForgottenVerificationWidget(),

@@ -32,85 +32,83 @@ class VerificationState extends State<PasswordForgottenVerificationWidget>{
             color: Colors.black38,
             borderRadius: BorderRadiusDirectional.circular(8),
           ),
-          child: SizedBox(
-            width: 300,
-            height: 300,
-            child: ListView(
-              children: [
-                SizedBox(
-                  width: 300,
-                  child: Padding(
-                    padding: EdgeInsets.fromLTRB(0, 10, 0, 8),
-                    child: Text(
-                      "Enter your email",
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                width: 300,
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(0, 10, 0, 8),
+                  child: Text(
+                    "Enter your email",
+                    style: TextStyle(
+                      color: Colors.white,
                     ),
                   ),
                 ),
-            
-                widget.emailField,
-            
-                SizedBox(
-                  width: 300,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        flex: 1,
-                        child: Container(
-                          margin: EdgeInsets.fromLTRB(0,10,5,0),
-                          height: 35,
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              width: 2,
-                              color: Colors.black38,
-                            ),
-                            borderRadius: const BorderRadius.all(Radius.circular(30)),
+              ),
+
+              widget.emailField,
+
+              SizedBox(
+                width: 300,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        margin: EdgeInsets.fromLTRB(0,10,5,0),
+                        height: 35,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            width: 2,
+                            color: Colors.black38,
                           ),
-                          child: FloatingActionButton(
-                            onPressed: () => setState(() {
-                              Navigator.pop(context);
-                            }),
-                            backgroundColor: Colors.white,
-                            heroTag: 'Back',
-                            child: const Text(
-                              "Back",
-                            ),
+                          borderRadius: const BorderRadius.all(Radius.circular(30)),
+                        ),
+                        child: FloatingActionButton(
+                          onPressed: () => setState(() {
+                            Navigator.pop(context);
+                          }),
+                          backgroundColor: Colors.white,
+                          heroTag: 'Back',
+                          child: const Text(
+                            "Back",
                           ),
                         ),
                       ),
-                      Expanded(
-                        flex: 1,
-                        child: Container(
-                          margin: EdgeInsets.fromLTRB(5,10,0,0),
-                          height: 35,
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              width: 2,
-                              color: Colors.black38,
-                            ),
-                            borderRadius: const BorderRadius.all(Radius.circular(30)),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        margin: EdgeInsets.fromLTRB(5,10,0,0),
+                        height: 35,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            width: 2,
+                            color: Colors.black38,
                           ),
-                          child: FloatingActionButton(
-                            onPressed: null,
-                            backgroundColor: Colors.white,
-                            heroTag: 'Send',
-                            child: const Text(
-                              "Send",
-                            ),
+                          borderRadius: const BorderRadius.all(Radius.circular(30)),
+                        ),
+                        child: FloatingActionButton(
+                          onPressed: null,
+                          backgroundColor: Colors.white,
+                          heroTag: 'Send',
+                          child: const Text(
+                            "Send",
                           ),
                         ),
                       ),
-                    ],
-                  )
-                ),
-              ]
-            ),
+                    ),
+                  ],
+                )
+              ),
+            ]
           ),
-        )
+        ),
       )
+
     );
   }
 }

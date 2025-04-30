@@ -45,37 +45,48 @@ class SearchState extends State<SearchPageWidget>{
             color: Colors.black38,
             borderRadius: BorderRadiusDirectional.circular(8),
           ),
-          child: FutureBuilder(
-            future: getData(),
-            builder: (context, snapshot){
-              if(snapshot.connectionState == ConnectionState.done){
-                return Column(
-                  children: [
-                    Expanded(
-                      flex: 1,
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: ListenableBuilder(
-                            listenable: navigationSignal,
-                            builder: (BuildContext context, Widget? child) {
-                              return SongsExtendedListViewWidget(songs: snapshot.data!);
-                            },
-                          ),
-                      ),
-                    ),
-
-                    Expanded(
-                      flex: 0,
-                      child: SongAudioPlayerWidget(),
+          child: Column(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: FutureBuilder(
+                        future: getData(),
+                        builder: (context, snapshot) {
+                          if(snapshot.hasData){
+                            return ListenableBuilder(
+                              listenable: navigationSignal,
+                              builder: (BuildContext context, Widget? child) {
+                                return SongsExtendedListViewWidget(songs: snapshot.data!);
+                              },
+                            );
+                          }
+                          else if(snapshot.hasError){
+                            return Center(
+                                child:
+                                Text(
+                                    "Nothing found",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                )
+                            );
+                          }
+                          else{
+                            return Center(child: CircularProgressIndicator());
+                          }
+                        }
                     )
-                  ],
-                );
-                }
-              else{
-                return Center(child: CircularProgressIndicator());
-              }
-            }
-          ),
+                  ),
+                ),
+
+                Expanded(
+                  flex: 0,
+                  child: SongAudioPlayerWidget(),
+                )
+              ],
+            )
         ),
       ),
     );

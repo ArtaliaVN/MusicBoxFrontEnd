@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:music_box_front_end/models/artist_dto.dart';
-import 'package:music_box_front_end/models/artist_sending_dto.dart';
+import 'package:music_box_front_end/models/sign_up_request.dart';
 import 'package:music_box_front_end/models/song_dto.dart';
 import 'package:http/http.dart' as http;
 import 'package:music_box_front_end/models/song_sending_dto.dart';
@@ -52,18 +52,19 @@ class RemoteService {
     print(response.body);
   }
 
-  postArtist(ArtistSendingDto dto) async {
+  postArtist(SignUpRequest request) async {
     var response = await http.post(
       Uri.http('localhost:8080', 'user'),
       headers: <String, String>{
         'Content-type': 'application/json',
       },
       body: jsonEncode(<String, String>{
-            'email': dto.email,
-            'userName': dto.userName,
-            'firstName': dto.firstName,
-            'lastName': dto.lastName,
-            'password': dto.password,
+            'email': request.email,
+            'userName': request.username,
+            'firstName': request.firstname,
+            'lastName': request.lastname,
+            'password': request.password,
+            'roles': request.roles.toList().toString(),
           }
         ),
       );
@@ -155,4 +156,5 @@ class RemoteService {
     }
     return true;
   }
+
 }

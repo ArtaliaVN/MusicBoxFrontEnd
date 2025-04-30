@@ -15,7 +15,7 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
 
       body: Container(
-        padding: EdgeInsets.all(10),
+        padding: EdgeInsets.fromLTRB(10, 30, 10, 10),
         decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage("assets/images/background1.jpg"),
@@ -32,21 +32,10 @@ class MyHomePage extends StatelessWidget {
                 children: [
                   Expanded(
                     flex:1,
-                    child: Column(
-                      children: [
-                        Expanded(
-                        flex: 0,
-                        child: SizedBox(
-                          child: HeaderWidget(),
-                          ),
-                        ),
-    
-                        Expanded(
-                          flex: 1,
-                          child: HomeWidget(),
-                        ),
-                      ],
-                    ),
+                    child: Expanded(
+                        flex: 1,
+                        child: HomeWidget(),
+                      ),
                     ),
                   ],
                 ),

@@ -28,18 +28,18 @@ class SearchParWidget extends StatelessWidget{
                     horizontal: 10,
                   ),
                   hintText: "What jam are we listening to today ?",
-                  prefixIcon: Visibility(
-                    visible: Navigator.canPop(context),
-                    child: GestureDetector(
-                      onTap: () => {
-                        Navigator.pop(context),
-                      },
-                      child: Icon(
-                        Icons.arrow_back_ios,
-                        color: Color.fromARGB(255, 79, 77, 77),
-                      )
-                    ),
-                  ),
+                  // prefixIcon: Visibility(
+                  //   visible: Navigator.canPop(context),
+                  //   child: GestureDetector(
+                  //     onTap: () => {
+                  //       Navigator.pop(context),
+                  //     },
+                  //     child: Icon(
+                  //       Icons.arrow_back_ios,
+                  //       color: Color.fromARGB(255, 79, 77, 77),
+                  //     )
+                  //   ),
+                  // ),
                   suffixIcon: const Icon(
                     Icons.search,
                     color: Color.fromARGB(255, 79, 77, 77),
